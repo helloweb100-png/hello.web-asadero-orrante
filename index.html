@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="es-MX" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <script>document.documentElement.classList.replace('no-js', 'js');</script>
+
+    <!-- ═════════════ SEO ═════════════
+         TODO antes de publicar: reemplazar https://TU-DOMINIO.com por el dominio real
+         (canonical, og:url, og:image y JSON-LD). Para SEO local, agregar la ciudad al title,
+         al H1 y a los datos estructurados. -->
+    <title>Asadero Orrante | Pollo, carne asada y cortes a la brasa</title>
+    <meta name="description" content="Asadero Orrante: pollo asado, carne asada, costillitas BBQ y cortes a la brasa. Arma tu pedido y envíalo por WhatsApp. ¡No somos uno más, pruébanos!">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://TU-DOMINIO.com/">
+    <meta name="theme-color" content="#0a0605">
+    <meta name="color-scheme" content="dark">
+    <meta name="author" content="Asadero Orrante">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_MX">
+    <meta property="og:site_name" content="Asadero Orrante">
+    <meta property="og:title" content="Asadero Orrante | Pollo, carne asada y cortes a la brasa">
+    <meta property="og:description" content="Carnes, pollo y cortes a la brasa. Pide por WhatsApp y te lo preparamos al momento. ¡No somos uno más, pruébanos!">
+    <meta property="og:url" content="https://TU-DOMINIO.com/">
+    <meta property="og:image" content="https://TU-DOMINIO.com/img/og-asadero-orrante.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Logo de Asadero Orrante junto a una tabla de pollo asado a la brasa">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Asadero Orrante | Pollo, carne asada y cortes a la brasa">
+    <meta name="twitter:description" content="Carnes, pollo y cortes a la brasa. Pide por WhatsApp. ¡No somos uno más, pruébanos!">
+    <meta name="twitter:image" content="https://TU-DOMINIO.com/img/og-asadero-orrante.jpg">
+
+    <link rel="icon" href="img/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+    <!-- Rendimiento: fuentes propias + imagen del hero precargada -->
+    <link rel="preload" href="fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" as="image" href="img/pollo-asado-en-tabla.webp"
+          imagesrcset="img/pollo-asado-en-tabla-sm.webp 640w, img/pollo-asado-en-tabla.webp 1414w"
+          imagesizes="(min-width: 1024px) 560px, 78vw" fetchpriority="high">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Datos estructurados. TODO cuando el cliente confirme: telephone, address, openingHoursSpecification, geo, url. -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "Asadero Orrante",
+        "description": "Asadero especializado en carnes, pollo asado, costillitas BBQ y cortes a la brasa. Pedidos por WhatsApp.",
+        "slogan": "¡No somos uno más, pruébanos!",
+        "image": ["https://TU-DOMINIO.com/img/og-asadero-orrante.jpg"],
+        "servesCuisine": ["Pollo asado", "Carne asada", "Costillitas BBQ", "Cortes a la brasa"]
+    }
+    </script>
+</head>
+
+<body>
+<!-- Iconos Phosphor (MIT) en sprite inline: sin peticiones extra -->
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<symbol id="i-whatsapp-logo" viewBox="0 0 256 256" fill="currentColor"><path d="M187.58,144.84l-32-16a8,8,0,0,0-8,.5l-14.69,9.8a40.55,40.55,0,0,1-16-16l9.8-14.69a8,8,0,0,0,.5-8l-16-32A8,8,0,0,0,104,64a40,40,0,0,0-40,40,88.1,88.1,0,0,0,88,88,40,40,0,0,0,40-40A8,8,0,0,0,187.58,144.84ZM152,176a72.08,72.08,0,0,1-72-72A24,24,0,0,1,99.29,80.46l11.48,23L101,118a8,8,0,0,0-.73,7.51,56.47,56.47,0,0,0,30.15,30.15A8,8,0,0,0,138,155l14.61-9.74,23,11.48A24,24,0,0,1,152,176ZM128,24A104,104,0,0,0,36.18,176.88L24.83,210.93a16,16,0,0,0,20.24,20.24l34.05-11.35A104,104,0,1,0,128,24Zm0,192a87.87,87.87,0,0,1-44.06-11.81,8,8,0,0,0-6.54-.67L40,216,52.47,178.6a8,8,0,0,0-.66-6.54A88,88,0,1,1,128,216Z"/></symbol>
+<symbol id="i-instagram-logo" viewBox="0 0 256 256" fill="currentColor"><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"/></symbol>
+<symbol id="i-facebook-logo" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,191.63V152h24a8,8,0,0,0,0-16H136V112a16,16,0,0,1,16-16h16a8,8,0,0,0,0-16H152a32,32,0,0,0-32,32v24H96a8,8,0,0,0,0,16h24v63.63a88,88,0,1,1,16,0Z"/></symbol>
+<symbol id="i-tiktok-logo" viewBox="0 0 256 256" fill="currentColor"><path d="M224,72a48.05,48.05,0,0,1-48-48,8,8,0,0,0-8-8H128a8,8,0,0,0-8,8V156a20,20,0,1,1-28.57-18.08A8,8,0,0,0,96,130.69V88a8,8,0,0,0-9.4-7.88C50.91,86.48,24,119.1,24,156a76,76,0,0,0,152,0V116.29A103.25,103.25,0,0,0,224,128a8,8,0,0,0,8-8V80A8,8,0,0,0,224,72Zm-8,39.64a87.19,87.19,0,0,1-43.33-16.15A8,8,0,0,0,160,102v54a60,60,0,0,1-120,0c0-25.9,16.64-49.13,40-57.6v27.67A36,36,0,1,0,136,156V32h24.5A64.14,64.14,0,0,0,216,87.5Z"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 256 256" fill="currentColor"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></symbol>
+<symbol id="i-arrow-up-right" viewBox="0 0 256 256" fill="currentColor"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></symbol>
+<symbol id="i-arrow-up" viewBox="0 0 256 256" fill="currentColor"><path d="M205.66,117.66a8,8,0,0,1-11.32,0L136,59.31V216a8,8,0,0,1-16,0V59.31L61.66,117.66a8,8,0,0,1-11.32-11.32l72-72a8,8,0,0,1,11.32,0l72,72A8,8,0,0,1,205.66,117.66Z"/></symbol>
+<symbol id="i-arrow-down" viewBox="0 0 256 256" fill="currentColor"><path d="M205.66,149.66l-72,72a8,8,0,0,1-11.32,0l-72-72a8,8,0,0,1,11.32-11.32L120,196.69V40a8,8,0,0,1,16,0V196.69l58.34-58.35a8,8,0,0,1,11.32,11.32Z"/></symbol>
+<symbol id="i-pepper" viewBox="0 0 256 256" fill="currentColor"><path d="M167.27,40.42A40.06,40.06,0,0,0,128,8a8,8,0,0,0,0,16,24,24,0,0,1,22.85,16.66A64.08,64.08,0,0,0,96,104c0,46.75-25.75,78-76.53,93a16,16,0,0,0,1.77,31.13A264.8,264.8,0,0,0,66.75,232c40.78,0,86.16-9.15,117.53-35.46C210.64,174.44,224,143.3,224,104h0A64.07,64.07,0,0,0,167.27,40.42ZM160,56a48.07,48.07,0,0,1,45.37,32.37L192,95,163.58,80.83a8,8,0,0,0-7.16,0L128,95l-13.37-6.68A48.08,48.08,0,0,1,160,56Zm14,128.3c-18,15.07-43.6,25.26-74.12,29.47A254.08,254.08,0,0,1,24,212.37h0v0c57.23-16.87,87.63-54,88-107.42l12.44,6.22a8,8,0,0,0,7.16,0L160,96.93l28.42,14.21a8,8,0,0,0,7.16,0l12.41-6.2C207.78,138.84,196.35,165.54,174,184.29Z"/></symbol>
+<symbol id="i-chat-circle-text" viewBox="0 0 256 256" fill="currentColor"><path d="M168,112a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,112Zm-8,24H96a8,8,0,0,0,0,16h64a8,8,0,0,0,0-16Zm72-8A104,104,0,0,1,79.12,219.82L45.07,231.17a16,16,0,0,1-20.24-20.24l11.35-34.05A104,104,0,1,1,232,128Zm-16,0A88,88,0,1,0,51.81,172.06a8,8,0,0,1,.66,6.54L40,216,77.4,203.53a7.85,7.85,0,0,1,2.53-.42,8,8,0,0,1,4,1.08A88,88,0,0,0,216,128Z"/></symbol>
+<symbol id="i-timer" viewBox="0 0 256 256" fill="currentColor"><path d="M128,40a96,96,0,1,0,96,96A96.11,96.11,0,0,0,128,40Zm0,176a80,80,0,1,1,80-80A80.09,80.09,0,0,1,128,216ZM173.66,90.34a8,8,0,0,1,0,11.32l-40,40a8,8,0,0,1-11.32-11.32l40-40A8,8,0,0,1,173.66,90.34ZM96,16a8,8,0,0,1,8-8h48a8,8,0,0,1,0,16H104A8,8,0,0,1,96,16Z"/></symbol>
+<symbol id="i-hand-pointing" viewBox="0 0 256 256" fill="currentColor"><path d="M196,88a27.86,27.86,0,0,0-13.35,3.39A28,28,0,0,0,144,74.7V44a28,28,0,0,0-56,0v80l-3.82-6.13A28,28,0,0,0,35.73,146l4.67,8.23C74.81,214.89,89.05,240,136,240a88.1,88.1,0,0,0,88-88V116A28,28,0,0,0,196,88Zm12,64a72.08,72.08,0,0,1-72,72c-37.63,0-47.84-18-81.68-77.68l-4.69-8.27,0-.05A12,12,0,0,1,54,121.61a11.88,11.88,0,0,1,6-1.6,12,12,0,0,1,10.41,6,1.76,1.76,0,0,0,.14.23l18.67,30A8,8,0,0,0,104,152V44a12,12,0,0,1,24,0v68a8,8,0,0,0,16,0V100a12,12,0,0,1,24,0v20a8,8,0,0,0,16,0v-4a12,12,0,0,1,24,0Z"/></symbol>
+<symbol id="i-fork-knife" viewBox="0 0 256 256" fill="currentColor"><path d="M72,88V40a8,8,0,0,1,16,0V88a8,8,0,0,1-16,0ZM216,40V224a8,8,0,0,1-16,0V176H152a8,8,0,0,1-8-8,268.75,268.75,0,0,1,7.22-56.88c9.78-40.49,28.32-67.63,53.63-78.47A8,8,0,0,1,216,40ZM200,53.9c-32.17,24.57-38.47,84.42-39.7,106.1H200ZM119.89,38.69a8,8,0,1,0-15.78,2.63L112,88.63a32,32,0,0,1-64,0l7.88-47.31a8,8,0,1,0-15.78-2.63l-8,48A8.17,8.17,0,0,0,32,88a48.07,48.07,0,0,0,40,47.32V224a8,8,0,0,0,16,0V135.32A48.07,48.07,0,0,0,128,88a8.17,8.17,0,0,0-.11-1.31Z"/></symbol>
+<symbol id="i-map-pin" viewBox="0 0 256 256" fill="currentColor"><path d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z"/></symbol>
+<symbol id="i-clock" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48A8,8,0,0,1,192,128Z"/></symbol>
+<symbol id="i-sparkle" viewBox="0 0 256 256" fill="currentColor"><path d="M197.58,129.06,146,110l-19-51.62a15.92,15.92,0,0,0-29.88,0L78,110l-51.62,19a15.92,15.92,0,0,0,0,29.88L78,178l19,51.62a15.92,15.92,0,0,0,29.88,0L146,178l51.62-19a15.92,15.92,0,0,0,0-29.88ZM137,164.22a8,8,0,0,0-4.74,4.74L112,223.85,91.78,169A8,8,0,0,0,87,164.22L32.15,144,87,123.78A8,8,0,0,0,91.78,119L112,64.15,132.22,119a8,8,0,0,0,4.74,4.74L191.85,144ZM144,40a8,8,0,0,1,8-8h16V16a8,8,0,0,1,16,0V32h16a8,8,0,0,1,0,16H184V64a8,8,0,0,1-16,0V48H152A8,8,0,0,1,144,40ZM248,88a8,8,0,0,1-8,8h-8v8a8,8,0,0,1-16,0V96h-8a8,8,0,0,1,0-16h8V72a8,8,0,0,1,16,0v8h8A8,8,0,0,1,248,88Z"/></symbol>
+<symbol id="i-fire-fill" viewBox="0 0 256 256" fill="currentColor"><path d="M143.38,17.85a8,8,0,0,0-12.63,3.41l-22,60.41L84.59,58.26a8,8,0,0,0-11.93.89C51,87.53,40,116.08,40,144a88,88,0,0,0,176,0C216,84.55,165.21,36,143.38,17.85Zm40.51,135.49a57.6,57.6,0,0,1-46.56,46.55A7.65,7.65,0,0,1,136,200a8,8,0,0,1-1.32-15.89c16.57-2.79,30.63-16.85,33.44-33.45a8,8,0,0,1,15.78,2.68Z"/></symbol>
+<symbol id="i-whatsapp-logo-fill" viewBox="0 0 256 256" fill="currentColor"><path d="M152.58,145.23l23,11.48A24,24,0,0,1,152,176a72.08,72.08,0,0,1-72-72A24,24,0,0,1,99.29,80.46l11.48,23L101,118a8,8,0,0,0-.73,7.51,56.47,56.47,0,0,0,30.15,30.15A8,8,0,0,0,138,155ZM232,128A104,104,0,0,1,79.12,219.82L45.07,231.17a16,16,0,0,1-20.24-20.24l11.35-34.05A104,104,0,1,1,232,128Zm-40,24a8,8,0,0,0-4.42-7.16l-32-16a8,8,0,0,0-8,.5l-14.69,9.8a40.55,40.55,0,0,1-16-16l9.8-14.69a8,8,0,0,0,.5-8l-16-32A8,8,0,0,0,104,64a40,40,0,0,0-40,40,88.1,88.1,0,0,0,88,88A40,40,0,0,0,192,152Z"/></symbol>
+</svg>
+
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<!-- ═════════════ PRELOADER ═════════════ -->
+<div id="preloader" class="pl" role="status" aria-live="polite" aria-label="Cargando Asadero Orrante">
+    <div class="pl__strips" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="pl__core">
+        <div class="pl__ring">
+            <svg viewBox="0 0 220 220" aria-hidden="true" focusable="false">
+                <defs>
+                    <linearGradient id="pl-grad" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0" stop-color="#ffb02e"/>
+                        <stop offset="1" stop-color="#e8561b"/>
+                    </linearGradient>
+                </defs>
+                <circle class="pl__dash" cx="110" cy="110" r="106"/>
+                <circle class="pl__track" cx="110" cy="110" r="92"/>
+                <circle class="pl__prog" id="pl-prog" cx="110" cy="110" r="92" pathLength="100"/>
+                <g class="pl__comet"><circle cx="110" cy="18" r="4.5"/></g>
+            </svg>
+            <img class="pl__mark" src="img/marca-orrante.webp" width="203" height="220" alt="">
+        </div>
+        <p class="pl__count"><span id="pl-num">0</span><small>%</small></p>
+        <p class="pl__msg" id="pl-msg">Encendiendo las brasas</p>
+    </div>
+</div>
+
+<div class="progress" aria-hidden="true"><span class="progress__bar"></span></div>
+
+<!-- ═════════════ NAVEGACIÓN ═════════════ -->
+<header class="nav" id="nav">
+    <div class="nav__bar">
+        <a class="nav__brand" href="#inicio" aria-label="Asadero Orrante, volver al inicio">
+            <img src="img/marca-orrante.webp" width="40" height="43" alt="" decoding="async">
+            <span class="nav__word">Asadero <b>Orrante</b></span>
+        </a>
+        <nav class="nav__links" aria-label="Principal">
+            <a href="#menu">Menú</a>
+            <a href="#fuego">La brasa</a>
+            <a href="#pedir">Cómo pedir</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+        <a class="btn btn--flame btn--sm nav__cta" href="https://wa.me/" target="_blank" rel="noopener noreferrer"
+           data-wa="Hola, quiero hacer un pedido en Asadero Orrante.">
+            <svg class="ic" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>
+            <span>Pedir ahora</span>
+        </a>
+        <button class="nav__burger" id="burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="drawer">
+            <span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<div class="drawer" id="drawer" inert>
+    <nav class="drawer__nav" aria-label="Menú móvil">
+        <a href="#menu" class="drawer__link"><span>Menú</span><svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+        <a href="#fuego" class="drawer__link"><span>La brasa</span><svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+        <a href="#pedir" class="drawer__link"><span>Cómo pedir</span><svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+        <a href="#contacto" class="drawer__link"><span>Contacto</span><svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+    </nav>
+    <div class="drawer__foot">
+        <a class="btn btn--flame btn--lg btn--block" href="https://wa.me/" target="_blank" rel="noopener noreferrer"
+           data-wa="Hola, quiero hacer un pedido en Asadero Orrante.">
+            <svg class="ic" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>
+            <span>Quiero mi pedido</span>
+        </a>
+        <p class="drawer__slogan">¡No somos uno más, pruébanos!</p>
+    </div>
+</div>
+
+<main id="contenido">
+
+<!-- ═════════════ HERO ═════════════ -->
+<section class="hero" id="inicio" aria-labelledby="hero-title">
+    <div class="hero__bg" aria-hidden="true">
+        <span class="blob blob--wine"></span>
+        <span class="blob blob--ember"></span>
+        <span class="blob blob--amber"></span>
+        <canvas class="embers" id="embers-hero"></canvas>
+    </div>
+
+    <div class="container hero__grid">
+        <div class="hero__copy">
+            <p class="eyebrow" data-hero>
+                <svg class="ic" aria-hidden="true"><use href="#i-fire-fill"/></svg>
+                Carnes, pollo y cortes a la brasa
+            </p>
+            <h1 class="hero__title" id="hero-title" data-split="hero"><span class="l">No somos uno más.</span> <span class="l grad">Somos Orrante.</span></h1>
+            <p class="hero__sub" data-hero>Pollo asado, carne asada y costillitas BBQ a la brasa. Pide por WhatsApp y te lo preparamos al momento.</p>
+            <div class="hero__cta" data-hero>
+                <a class="btn btn--flame btn--lg magnetic" href="https://wa.me/" target="_blank" rel="noopener noreferrer"
+                   data-wa="Hola, quiero hacer un pedido en Asadero Orrante.">
+                    <svg class="ic" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>
+                    <span>Quiero mi pedido</span>
+                </a>
+                <a class="btn btn--ghost btn--lg magnetic" href="#menu">
+                    <span>Ver el menú</span>
+                    <svg class="ic" aria-hidden="true"><use href="#i-arrow-down"/></svg>
+                </a>
+            </div>
+        </div>
+
+        <div class="hero__stage" id="stage">
+            <div class="stage__tilt" id="stage-tilt">
+                <svg class="stage__text" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
+                    <defs><path id="ring-path" d="M200,200 m-162,0 a162,162 0 1,1 324,0 a162,162 0 1,1 -324,0"/></defs>
+                    <text><textPath href="#ring-path" textLength="1008" lengthAdjust="spacing">CARNES - POLLO - CORTES - A LA BRASA - CARNES - POLLO - CORTES - A LA BRASA -</textPath></text>
+                </svg>
+                <span class="stage__ring stage__ring--a" aria-hidden="true"></span>
+                <span class="stage__ring stage__ring--b" aria-hidden="true"></span>
+
+                <div class="plate">
+                    <div class="plate__img">
+                        <img src="img/pollo-asado-en-tabla.webp"
+                             srcset="img/pollo-asado-en-tabla-sm.webp 640w, img/pollo-asado-en-tabla.webp 1414w"
+                             sizes="(min-width: 1024px) 560px, 78vw"
+                             width="1414" height="943" fetchpriority="high" decoding="async"
+                             alt="Pollo asado a la brasa servido sobre tabla de madera con cebolla y cilantro">
+                    </div>
+                </div>
+
+                <div class="orbit">
+                    <div class="sat sat--1" style="--a:18deg">
+                        <div class="sat__img"><img src="img/carne-asada-tortillas-salsas-sm.webp" width="640" height="435" loading="eager" decoding="async" alt="Plato de carne asada en tiras con tortillas y salsas"></div>
+                    </div>
+                    <div class="sat sat--2" style="--a:104deg">
+                        <div class="sat__img"><img src="img/pollo-crujiente-con-papas-sm.webp" width="560" height="840" loading="eager" decoding="async" alt="Pollo crujiente empanizado con papas a la francesa"></div>
+                    </div>
+                    <div class="sat sat--3" style="--a:196deg">
+                        <div class="sat__img"><img class="sat__crop" src="img/costillitas-bbq-papas-elote-sm.webp" width="640" height="640" loading="eager" decoding="async" alt="Costillitas BBQ glaseadas con papas y elote asado"></div>
+                    </div>
+                    <div class="sat sat--4" style="--a:282deg">
+                        <div class="sat__img"><img class="sat__cook" src="img/parrillero-sirviendo-pollo-asado-sm.webp" width="560" height="840" loading="eager" decoding="async" alt="Parrillero sirviendo pollo asado con cebolla y cilantro"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═════════════ MARQUEE (único de la página) ═════════════ -->
+<div class="marquee" aria-hidden="true">
+    <div class="marquee__track" id="marquee-track">
+        <div class="marquee__group">
+            <span>Carnes</span><svg class="ic"><use href="#i-fire-fill"/></svg>
+            <span class="is-outline">Pollo</span><svg class="ic"><use href="#i-fire-fill"/></svg>
+            <span>Cortes</span><svg class="ic"><use href="#i-fire-fill"/></svg>
+            <span class="is-outline">Costillitas BBQ</span><svg class="ic"><use href="#i-fire-fill"/></svg>
+            <span>A la brasa</span><svg class="ic"><use href="#i-fire-fill"/></svg>
+        </div>
+    </div>
+</div>
+
+<!-- ═════════════ MANIFIESTO ═════════════ -->
+<section class="manifesto" id="sabor" aria-labelledby="sabor-title">
+    <div class="container">
+        <h2 class="sr-only" id="sabor-title">Sobre Asadero Orrante</h2>
+        <p class="manifesto__text" data-scrub>En Orrante el fuego no se apura. Cada pollo, cada corte y cada costilla pasa por la <span class="hl">brasa</span> el tiempo justo, con sazón de la casa y salsas para acompañar. Una sola regla: que lo pruebes y quieras <span class="hl">repetir</span>.</p>
+    </div>
+</section>
+
+<!-- ═════════════ LA BRASA: imagen que se abre con el scroll ═════════════ -->
+<section class="zoom" id="fuego" aria-labelledby="fuego-title">
+    <div class="zoom__pin">
+        <p class="zoom__bgword" aria-hidden="true">Brasa</p>
+        <div class="zoom__frame">
+            <img src="img/charola-carne-asada-pure-gratinado.webp" width="1600" height="1200" loading="lazy" decoding="async"
+                 alt="Charola de carne asada picada sobre puré gratinado, con salsa, chile toreado y cebolla con cilantro">
+            <span class="zoom__shade"></span>
+        </div>
+        <div class="zoom__content container">
+            <h2 class="zoom__title" id="fuego-title" data-split="manual">Del asador directo a tu mesa.</h2>
+            <p class="zoom__text">Carnes, pollo y costillitas pasan por la brasa y llegan a tu mesa bien doradas, con sus salsas y guarniciones.</p>
+            <a class="btn btn--flame btn--lg magnetic" href="https://wa.me/" target="_blank" rel="noopener noreferrer"
+               data-wa="Hola, se me antojó. Quiero hacer un pedido en Asadero Orrante.">
+                <svg class="ic" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>
+                <span>¡Se me antojó, pido ya!</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ═════════════ MENÚ: scroll horizontal ═════════════ -->
+<section class="menu" id="menu" aria-labelledby="menu-title">
+    <div class="menu__pin">
+        <div class="menu__track" id="menu-track">
+            <div class="menu__intro">
+                <p class="eyebrow">
+                    <svg class="ic" aria-hidden="true"><use href="#i-fire-fill"/></svg>
+                    Lo que sale de la brasa
+                </p>
+                <h2 id="menu-title" data-split>Elige tu antojo.</h2>
+                <p class="menu__lead">Seis opciones para empezar. Dinos cuál se te antoja y te la preparamos.</p>
+            </div>
+
+            <ul class="menu__list" role="list">
+                <li class="pcard">
+                    <article class="pcard__inner" data-spot>
+                        <div class="pcard__media"><img class="pcard__img pcard__img--top" src="img/pollo-asado-a-la-brasa.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Pollo asado a la brasa, dorado y jugoso"></div>
+                        <div class="pcard__body">
+                            <h3>Pollo asado</h3>
+                            <p>Dorado a la brasa, jugoso por dentro. Con cebolla, cilantro y salsa.</p>
+                            <a class="pcard__link" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero pedir pollo asado." aria-label="Pedir pollo asado por WhatsApp">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+                        </div>
+                    </article>
+                </li>
+                <li class="pcard">
+                    <article class="pcard__inner" data-spot>
+                        <div class="pcard__media"><img class="pcard__img" src="img/carne-asada-tortillas-salsas.webp" width="1405" height="956" loading="lazy" decoding="async" alt="Carne asada en tiras con tortillas, salsa roja, salsa verde y chiles toreados"></div>
+                        <div class="pcard__body">
+                            <h3>Carne asada</h3>
+                            <p>Tiras selladas a la parrilla, con tortillas, salsas y chiles toreados.</p>
+                            <a class="pcard__link" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero pedir carne asada." aria-label="Pedir carne asada por WhatsApp">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+                        </div>
+                    </article>
+                </li>
+                <li class="pcard">
+                    <article class="pcard__inner" data-spot>
+                        <div class="pcard__media"><img class="pcard__img pcard__img--bottom" src="img/costillitas-bbq-papas-elote.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Costillitas BBQ glaseadas con papas a la francesa y elote asado"></div>
+                        <div class="pcard__body">
+                            <h3>Costillitas BBQ</h3>
+                            <p>Glaseadas en salsa BBQ, con papas a la francesa y elote asado.</p>
+                            <a class="pcard__link" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero pedir costillitas BBQ." aria-label="Pedir costillitas BBQ por WhatsApp">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+                        </div>
+                    </article>
+                </li>
+                <li class="pcard">
+                    <article class="pcard__inner" data-spot>
+                        <div class="pcard__media"><img class="pcard__img" src="img/pechuga-asada-con-salsa.webp" width="1280" height="886" loading="lazy" decoding="async" alt="Tiras de pechuga asada sazonada con cebolla, cilantro y salsa"></div>
+                        <div class="pcard__body">
+                            <h3>Pechuga asada</h3>
+                            <p>Tiras de pechuga sazonadas y asadas, con cebolla, cilantro y salsa.</p>
+                            <a class="pcard__link" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero pedir pechuga asada." aria-label="Pedir pechuga asada por WhatsApp">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+                        </div>
+                    </article>
+                </li>
+                <li class="pcard">
+                    <article class="pcard__inner" data-spot>
+                        <div class="pcard__media"><img class="pcard__img" src="img/pollo-crujiente-con-papas.webp" width="1066" height="1600" loading="lazy" decoding="async" alt="Pollo crujiente empanizado con papas a la francesa en canasta"></div>
+                        <div class="pcard__body">
+                            <h3>Pollo crujiente</h3>
+                            <p>Empanizado dorado y crujiente, con papas a la francesa.</p>
+                            <a class="pcard__link" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero pedir pollo crujiente con papas." aria-label="Pedir pollo crujiente por WhatsApp">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+                        </div>
+                    </article>
+                </li>
+                <li class="pcard">
+                    <article class="pcard__inner" data-spot>
+                        <div class="pcard__media"><img class="pcard__img" src="img/charola-carne-asada-pure-gratinado.webp" width="1600" height="1200" loading="lazy" decoding="async" alt="Charola de carne asada picada sobre puré gratinado con salsa y chile toreado"></div>
+                        <div class="pcard__body">
+                            <h3>Charola de carne</h3>
+                            <p>Carne asada picada sobre puré gratinado, con salsa y chile toreado.</p>
+                            <a class="pcard__link" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero pedir una charola de carne con puré." aria-label="Pedir charola de carne por WhatsApp">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+                        </div>
+                    </article>
+                </li>
+            </ul>
+
+            <div class="menu__outro">
+                <h3>¿Ya sabes qué se te antoja?</h3>
+                <p>Arma tu pedido en un minuto y mándalo directo a WhatsApp.</p>
+                <a class="btn btn--flame btn--lg magnetic" href="#contacto">
+                    <span>Armar mi pedido</span>
+                    <svg class="ic" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+                </a>
+            </div>
+        </div>
+        <div class="menu__progress" aria-hidden="true"><span class="menu__bar"></span></div>
+    </div>
+</section>
+
+<!-- ═════════════ POR QUÉ ORRANTE: bento ═════════════ -->
+<section class="why" id="porque" aria-labelledby="porque-title">
+    <div class="container">
+        <h2 class="why__title" id="porque-title" data-split>Se nota en cada plato.</h2>
+
+        <div class="bento">
+            <article class="cell cell--cook" data-spot data-reveal>
+                <img src="img/parrillero-sirviendo-pollo-asado.webp" width="1200" height="1800" loading="lazy" decoding="async"
+                     alt="Parrillero con guantes sirviendo pollo asado con cebolla y cilantro frescos">
+                <div class="cell__body">
+                    <svg class="ic ic--lg" aria-hidden="true"><use href="#i-timer"/></svg>
+                    <h3>Preparado al momento</h3>
+                    <p>Del asador al plato, con cebolla y cilantro frescos.</p>
+                </div>
+            </article>
+
+            <article class="cell cell--taste" data-spot data-reveal>
+                <img src="img/pollo-asado-a-la-brasa.webp" width="1080" height="1080" loading="lazy" decoding="async"
+                     alt="Primer plano de pollo asado con piel dorada y sazón visible">
+                <div class="cell__body">
+                    <svg class="ic ic--lg" aria-hidden="true"><use href="#i-sparkle"/></svg>
+                    <h3>Sazón que se queda</h3>
+                    <p>Dorado por fuera, jugoso por dentro. Se nota desde el primer bocado.</p>
+                </div>
+            </article>
+
+            <article class="cell cell--fire" data-spot data-reveal>
+                <div class="cell__body">
+                    <svg class="ic ic--lg" aria-hidden="true"><use href="#i-fire-fill"/></svg>
+                    <h3>A la brasa</h3>
+                    <p>Carnes, pollo y cortes pasan por el fuego, no por atajos.</p>
+                </div>
+            </article>
+
+            <article class="cell cell--sauce" data-spot data-reveal>
+                <img src="img/combo-carne-pollo-asado-orrante.webp" width="1080" height="1080" loading="lazy" decoding="async"
+                     alt="Salsa roja, chile toreado y cebolla con cilantro junto a la charola de carne asada">
+                <div class="cell__body">
+                    <svg class="ic ic--lg" aria-hidden="true"><use href="#i-pepper"/></svg>
+                    <h3>Salsas y guarniciones</h3>
+                    <p>Salsa roja, salsa verde, chile toreado y cebolla con cilantro.</p>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ═════════════ CÓMO PEDIR: tarjetas apiladas ═════════════ -->
+<section class="steps" id="pedir" aria-labelledby="pedir-title">
+    <div class="container steps__grid">
+        <div class="steps__aside">
+            <h2 id="pedir-title" data-split>Pedir es así de fácil.</h2>
+            <p>Tres pasos y tu antojo ya está en marcha.</p>
+            <a class="btn btn--flame btn--lg magnetic" href="https://wa.me/" target="_blank" rel="noopener noreferrer"
+               data-wa="Hola, estoy listo para pedir en Asadero Orrante.">
+                <svg class="ic" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>
+                <span>Estoy listo, vamos</span>
+            </a>
+        </div>
+
+        <ol class="steps__list" role="list">
+            <li class="step" style="--i:0">
+                <div class="step__card" data-spot>
+                    <span class="step__icon"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-hand-pointing"/></svg></span>
+                    <svg class="step__bg" viewBox="0 0 256 256" aria-hidden="true"><use href="#i-hand-pointing"/></svg>
+                    <h3>Elige lo que se te antoja</h3>
+                    <p>Mira el menú y decide: pollo, carne, costillitas o una charola completa.</p>
+                </div>
+            </li>
+            <li class="step" style="--i:1">
+                <div class="step__card" data-spot>
+                    <span class="step__icon"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-chat-circle-text"/></svg></span>
+                    <svg class="step__bg" viewBox="0 0 256 256" aria-hidden="true"><use href="#i-chat-circle-text"/></svg>
+                    <h3>Escríbenos por WhatsApp</h3>
+                    <p>Cuéntanos qué quieres y para cuántos. Te toma menos de un minuto.</p>
+                </div>
+            </li>
+            <li class="step" style="--i:2">
+                <div class="step__card" data-spot>
+                    <span class="step__icon"><svg class="ic ic--lg" aria-hidden="true"><use href="#i-fork-knife"/></svg></span>
+                    <svg class="step__bg" viewBox="0 0 256 256" aria-hidden="true"><use href="#i-fork-knife"/></svg>
+                    <h3>Nosotros lo preparamos</h3>
+                    <p>Te confirmamos y lo hacemos al momento, listo para disfrutar.</p>
+                </div>
+            </li>
+        </ol>
+    </div>
+</section>
+
+<!-- ═════════════ CIERRE: el lema ═════════════ -->
+<section class="finale" id="pruebanos" aria-labelledby="finale-title">
+    <canvas class="embers" id="embers-finale" aria-hidden="true"></canvas>
+    <div class="container finale__grid">
+        <div class="finale__copy">
+            <h2 id="finale-title" class="finale__title" data-split>¡No somos uno más, <span class="grad">pruébanos!</span></h2>
+            <p class="finale__text">Escríbenos hoy y descubre por qué el fuego de Orrante sabe distinto.</p>
+            <a class="btn btn--flame btn--xl magnetic" href="https://wa.me/" target="_blank" rel="noopener noreferrer"
+               data-wa="Hola, vi su página y quiero probar Asadero Orrante.">
+                <svg class="ic" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>
+                <span>Pruébanos hoy</span>
+            </a>
+        </div>
+        <div class="finale__logo" id="finale-logo">
+            <img src="img/logo-asadero-orrante.webp" width="1000" height="882" loading="lazy" decoding="async"
+                 alt="Logotipo de Asadero Orrante: toro chef frente a una parrilla con flama y el lema No somos uno más, pruébanos">
+        </div>
+    </div>
+</section>
+
+<!-- ═════════════ CONTACTO + FORMULARIO ═════════════ -->
+<section class="contact" id="contacto" aria-labelledby="contacto-title">
+    <div class="container contact__grid">
+        <div class="contact__info">
+            <p class="eyebrow">
+                <svg class="ic" aria-hidden="true"><use href="#i-fire-fill"/></svg>
+                Tu pedido
+            </p>
+            <h2 id="contacto-title" data-split>Arma tu pedido en un minuto.</h2>
+            <p class="contact__lead">Cuéntanos qué se te antoja y se abrirá WhatsApp con todo listo para enviar.</p>
+
+            <ul class="info" role="list">
+                <li>
+                    <span class="info__icon"><svg class="ic" aria-hidden="true"><use href="#i-whatsapp-logo"/></svg></span>
+                    <div><strong>WhatsApp</strong><span data-contact="phone">Escríbenos y te respondemos en cuanto podamos.</span></div>
+                </li>
+                <li>
+                    <span class="info__icon"><svg class="ic" aria-hidden="true"><use href="#i-map-pin"/></svg></span>
+                    <div><strong>Ubicación</strong><span data-contact="address">Pídenos la ubicación por WhatsApp.</span></div>
+                </li>
+                <li>
+                    <span class="info__icon"><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg></span>
+                    <div><strong>Horario</strong><span data-contact="hours">Consulta el horario de hoy por WhatsApp.</span></div>
+                </li>
+            </ul>
+
+            <div class="socials" data-socials hidden>
+                <a href="#" target="_blank" rel="noopener noreferrer" data-social="instagram" aria-label="Instagram de Asadero Orrante" hidden><svg class="ic" aria-hidden="true"><use href="#i-instagram-logo"/></svg></a>
+                <a href="#" target="_blank" rel="noopener noreferrer" data-social="facebook" aria-label="Facebook de Asadero Orrante" hidden><svg class="ic" aria-hidden="true"><use href="#i-facebook-logo"/></svg></a>
+                <a href="#" target="_blank" rel="noopener noreferrer" data-social="tiktok" aria-label="TikTok de Asadero Orrante" hidden><svg class="ic" aria-hidden="true"><use href="#i-tiktok-logo"/></svg></a>
+            </div>
+        </div>
+
+        <form class="form" id="pedido-form" novalidate data-spot>
+            <div class="field">
+                <label for="f-nombre">Tu nombre</label>
+                <input id="f-nombre" name="nombre" type="text" autocomplete="given-name" required placeholder="Ej. Carlos" aria-describedby="e-nombre">
+                <p class="field__err" id="e-nombre" role="alert"></p>
+            </div>
+
+            <fieldset class="field" aria-describedby="e-antojo">
+                <legend>¿Qué se te antoja?</legend>
+                <div class="chips">
+                    <label class="chip"><input type="checkbox" name="antojo" value="Pollo asado"><span>Pollo asado</span></label>
+                    <label class="chip"><input type="checkbox" name="antojo" value="Carne asada"><span>Carne asada</span></label>
+                    <label class="chip"><input type="checkbox" name="antojo" value="Costillitas BBQ"><span>Costillitas BBQ</span></label>
+                    <label class="chip"><input type="checkbox" name="antojo" value="Pechuga asada"><span>Pechuga asada</span></label>
+                    <label class="chip"><input type="checkbox" name="antojo" value="Pollo crujiente"><span>Pollo crujiente</span></label>
+                    <label class="chip"><input type="checkbox" name="antojo" value="Charola de carne"><span>Charola de carne</span></label>
+                </div>
+                <p class="field__err" id="e-antojo" role="alert"></p>
+            </fieldset>
+
+            <fieldset class="field">
+                <legend>¿Para cuántas personas?</legend>
+                <div class="seg">
+                    <label class="seg__opt"><input type="radio" name="personas" value="1 o 2 personas" checked><span>1 o 2</span></label>
+                    <label class="seg__opt"><input type="radio" name="personas" value="3 o 4 personas"><span>3 o 4</span></label>
+                    <label class="seg__opt"><input type="radio" name="personas" value="5 o 6 personas"><span>5 o 6</span></label>
+                    <label class="seg__opt"><input type="radio" name="personas" value="7 o más personas"><span>7 o más</span></label>
+                </div>
+            </fieldset>
+
+            <div class="field">
+                <label for="f-notas">Comentarios <span class="opt">(opcional)</span></label>
+                <textarea id="f-notas" name="notas" rows="3" placeholder="Ej. Sin picante, con tortillas extra"></textarea>
+            </div>
+
+            <button class="btn btn--flame btn--lg btn--block" type="submit" id="form-submit">
+                <svg class="ic" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>
+                <span>Mandar mi pedido por WhatsApp</span>
+            </button>
+            <p class="form__note">Se abrirá WhatsApp con tu pedido listo para enviar. No guardamos tus datos.</p>
+        </form>
+    </div>
+</section>
+
+</main>
+
+<!-- ═════════════ FOOTER ═════════════ -->
+<footer class="footer">
+    <div class="container footer__top">
+        <div class="footer__brand">
+            <img src="img/logo-asadero-orrante-sm.webp" width="420" height="370" loading="lazy" decoding="async" alt="Logotipo de Asadero Orrante">
+            <p>Carnes, pollo y cortes a la brasa. ¡No somos uno más, pruébanos!</p>
+        </div>
+        <nav class="footer__col" aria-label="Secciones">
+            <h2>Explora</h2>
+            <a href="#menu">Menú</a>
+            <a href="#fuego">La brasa</a>
+            <a href="#pedir">Cómo pedir</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+        <div class="footer__col">
+            <h2>Pide por WhatsApp</h2>
+            <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero hacer un pedido en Asadero Orrante.">Escríbenos ahora</a>
+            <address><span data-contact="address">Pídenos la ubicación por WhatsApp.</span></address>
+        </div>
+    </div>
+    <p class="footer__giant" aria-hidden="true">Orrante</p>
+    <div class="container footer__bottom">
+        <p>© <span id="year">2026</span> Asadero Orrante. Todos los derechos reservados.</p>
+        <a href="#inicio" class="footer__top-link">Volver arriba <svg class="ic" aria-hidden="true"><use href="#i-arrow-up"/></svg></a>
+    </div>
+</footer>
+
+<!-- ═════════════ WHATSAPP FLOTANTE ═════════════ -->
+<a class="wa-float" id="wa-float" href="https://wa.me/" target="_blank" rel="noopener noreferrer"
+   data-wa="Hola, quiero hacer un pedido en Asadero Orrante." aria-label="Pedir por WhatsApp">
+    <span class="wa-float__tip">¿Se te antojó? Escríbenos</span>
+    <span class="wa-float__btn">
+        <svg class="ic" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>
+    </span>
+</a>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
+<script src="app.js" defer></script>
+</body>
+</html>
