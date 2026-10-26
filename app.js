@@ -15,15 +15,18 @@
    Todo lo que se deje vacío se oculta o usa un texto neutro (no se inventan datos).
    ========================================================================== */
 const CONFIG = {
-    // WhatsApp para pedidos. Formato internacional sin "+", espacios ni guiones.
-    // México: 52 + 10 dígitos. Ejemplo: '526141234567'
-    phone: '520000000000',
+    // Sucursales. Cada una recibe los pedidos en su propio WhatsApp.
+    //   phone:   formato internacional sin "+", espacios ni guiones. México: 52 + 10 dígitos. Ejemplo: '526141234567'
+    //   address: opcional. Ejemplo: 'Av. Principal 123, Col. Centro, Ciudad'
+    // Las sucursales sin teléfono válido no se muestran. Con una sola, los botones abren su WhatsApp directo;
+    // con dos o más, los botones abren un selector de sucursal.
+    branches: [
+        { name: 'Santa Teresa', phone: '', address: '' },
+        { name: '', phone: '', address: '' },   // sin nombre se muestra como "Sucursal 2"
+        { name: '', phone: '', address: '' }    // sin nombre se muestra como "Sucursal 3"
+    ],
 
-    // Cómo se muestra el teléfono en la sección Contacto. Ejemplo: '+52 614 123 4567'
-    displayPhone: '',
-
-    // Dirección y horario. Ejemplo: 'Av. Principal 123, Col. Centro, Ciudad'
-    address: '',
+    // Horario. Ejemplo: 'Lunes a domingo de 9:00 a 20:00'
     hours: '',
 
     // Redes sociales: URL completa. Las que queden vacías no se muestran.
@@ -49,6 +52,7 @@ const CONFIG = {
 
     const state = { velocity: 0 };
     let lenis = null;
+    let openPicker = null; // abre el selector de sucursal con un mensaje; solo existe si hay 2+ sucursales
 
     /* ----------------------------------------------------------------------
        Utilidades
@@ -66,20 +70,25 @@ const CONFIG = {
     /* ----------------------------------------------------------------------
        WhatsApp, contacto y datos del negocio
        ---------------------------------------------------------------------- */
-    const waLink = msg => `https://wa.me/${CONFIG.phone}?text=${encodeURIComponent(msg)}`;
+    const isPhone = p => /^\d{10,15}$/.test(p) && !/^(52)?0+$/.test(p);
+    const branches = CONFIG.branches
+        .map((b, i) => ({ ...b, name: b.name || `Sucursal ${i + 1}` }))
+        .filter(b => isPhone(b.phone));
+    const showPhone = p => (/^52\d{10}$/.test(p) ? `+52 ${p.slice(2, 5)} ${p.slice(5, 8)} ${p.slice(8)}` : `+${p}`);
+    // Sin teléfono explícito usa la primera sucursal (los botones generales abren el selector si hay varias)
+    const waLink = (msg, phone = branches.length ? branches[0].phone : '') => `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
 
     function bindBusinessData() {
-        if (/^(52)?0+$/.test(CONFIG.phone) || !/^\d{10,15}$/.test(CONFIG.phone)) {
-            console.warn('[Orrante] Configura CONFIG.phone en app.js con el WhatsApp real del negocio.');
+        if (!branches.length) {
+            console.warn('[Orrante] Configura CONFIG.branches en app.js con el WhatsApp real de cada sucursal.');
         }
         $$('[data-wa]').forEach(a => { a.href = waLink(a.dataset.wa); });
+        renderBranches();
 
         const set = (key, value) => {
             if (!value) return;
             $$(`[data-contact="${key}"]`).forEach(el => { el.textContent = value; });
         };
-        set('phone', CONFIG.displayPhone);
-        set('address', CONFIG.address);
         set('hours', CONFIG.hours);
 
         let anySocial = false;
@@ -92,6 +101,127 @@ const CONFIG = {
 
         const year = $('#year');
         if (year) year.textContent = new Date().getFullYear();
+    }
+
+    /* ----------------------------------------------------------------------
+       Sucursales: lista en Contacto, enlaces en el footer y selector de sucursal
+       ---------------------------------------------------------------------- */
+    const SVG_NS = 'http://www.w3.org/2000/svg';
+
+    function icon(id, cls = 'ic') {
+        const svg = doc.createElementNS(SVG_NS, 'svg');
+        svg.setAttribute('class', cls);
+        svg.setAttribute('aria-hidden', 'true');
+        const use = doc.createElementNS(SVG_NS, 'use');
+        use.setAttribute('href', `#${id}`);
+        svg.appendChild(use);
+        return svg;
+    }
+
+    // Enlace a una sucursal. "full" agrega la línea de ubicación y el teléfono (Contacto); sin "full" es la versión del selector.
+    function branchLink(b, msg, full) {
+        const a = doc.createElement('a');
+        a.className = 'branch';
+        a.href = waLink(msg, b.phone);
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+
+        const ico = doc.createElement('span');
+        ico.className = 'info__icon';
+        ico.appendChild(icon('i-whatsapp-logo'));
+
+        const txt = doc.createElement('span');
+        txt.className = 'branch__txt';
+        const name = doc.createElement('strong');
+        name.textContent = b.name;
+        txt.appendChild(name);
+        const lines = full
+            ? [b.address || 'Pídenos la ubicación por WhatsApp.', showPhone(b.phone)]
+            : [b.address].filter(Boolean);
+        lines.forEach(line => {
+            const s = doc.createElement('span');
+            s.textContent = line;
+            txt.appendChild(s);
+        });
+
+        a.append(ico, txt, icon('i-arrow-up-right', 'ic branch__go'));
+        return a;
+    }
+
+    function renderBranches() {
+        if (!branches.length) return; // sin datos reales se conservan los textos neutros del HTML
+        const msg = 'Hola, quiero hacer un pedido en Asadero Orrante.';
+
+        const wrap = $('[data-branches]');
+        const list = $('[data-branch-list]');
+        if (wrap && list) {
+            branches.forEach(b => {
+                const li = doc.createElement('li');
+                li.appendChild(branchLink(b, msg, true));
+                list.appendChild(li);
+            });
+            wrap.hidden = false;
+            $$('[data-branch-fallback]').forEach(el => { el.hidden = true; });
+        }
+
+        const foot = $('[data-footer-branches]');
+        if (foot) {
+            branches.forEach(b => {
+                const a = doc.createElement('a');
+                a.href = waLink(msg, b.phone);
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+                a.textContent = b.name;
+                foot.appendChild(a);
+            });
+            foot.hidden = false;
+        }
+
+        const addr = $('.footer address');
+        const withAddress = branches.filter(b => b.address);
+        if (addr && withAddress.length) {
+            addr.replaceChildren(...withAddress.map(b => {
+                const p = doc.createElement('p');
+                p.textContent = `${b.name}: ${b.address}`;
+                return p;
+            }));
+        }
+    }
+
+    // Con 2+ sucursales, cualquier botón de WhatsApp abre este selector (y el formulario lo usa al enviar).
+    function initPicker() {
+        const dlg = $('#picker');
+        const list = $('#picker-list');
+        if (!dlg || !list || branches.length < 2 || typeof dlg.showModal !== 'function') return;
+
+        openPicker = msg => {
+            list.replaceChildren(...branches.map(b => {
+                const li = doc.createElement('li');
+                li.appendChild(branchLink(b, msg, false));
+                return li;
+            }));
+            dlg.showModal();
+            if (lenis) lenis.stop();
+        };
+
+        dlg.addEventListener('click', e => {
+            if (e.target === dlg || e.target.closest('[data-picker-close]')) { dlg.close(); return; }
+            if (e.target.closest('a.branch')) {
+                toast('Abriendo WhatsApp con tu pedido.');
+                dlg.close();
+            }
+        });
+        dlg.addEventListener('close', () => {
+            const drawer = $('#drawer');
+            if (lenis && !(drawer && drawer.classList.contains('is-open'))) lenis.start();
+        });
+
+        doc.addEventListener('click', e => {
+            const a = e.target.closest && e.target.closest('[data-wa]');
+            if (!a || e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey) return;
+            e.preventDefault();
+            openPicker(a.dataset.wa);
+        });
     }
 
     /* ----------------------------------------------------------------------
@@ -542,7 +672,7 @@ const CONFIG = {
                 scrollTrigger: { trigger: h, start: 'top 88%', once: true }
             });
         });
-        $$('.menu__lead, .menu__outro > *, .steps__aside > p, .steps__aside > .btn, .contact__lead, .contact__info > .info, .finale__text, .finale__copy > .btn, .menu__intro > .eyebrow, .contact__info > .eyebrow').forEach((el, i) => {
+        $$('.menu__lead, .menu__outro > *, .steps__aside > p, .steps__aside > .btn, .contact__lead, .contact__info > .info, .finale__text, .finale__copy > .btn, .menu__intro > .eyebrow, .contact__info > .eyebrow, .deals__head > .eyebrow, .deals__lead, .deals__tags, .deals__cta').forEach((el, i) => {
             gsap.fromTo(el, { opacity: 0, y: 30 }, {
                 opacity: 1, y: 0, duration: 1.2, ease: 'expo.out',
                 scrollTrigger: { trigger: el, start: 'top 92%', once: true }
@@ -602,7 +732,7 @@ const CONFIG = {
 
     function initNavState() {
         const { gsap, ScrollTrigger } = window;
-        [['#menu', 'menu'], ['#fuego', 'fuego'], ['#pedir', 'pedir'], ['#contacto', 'contacto']].forEach(([sel, key]) => {
+        [['#menu', 'menu'], ['#paquetes', 'paquetes'], ['#fuego', 'fuego'], ['#pedir', 'pedir'], ['#contacto', 'contacto']].forEach(([sel, key]) => {
             const link = $(`.nav__links a[href="#${key}"]`);
             if (!link) return;
             ScrollTrigger.create({
@@ -783,6 +913,8 @@ const CONFIG = {
                 '¡Gracias!'
             ].join('\n');
 
+            if (openPicker) { openPicker(text); return; } // varias sucursales: primero se elige a cuál mandarlo
+
             const url = waLink(text);
             const win = window.open(url, '_blank', 'noopener');
             if (!win) window.location.href = url; // si el navegador bloquea la ventana, vamos directo
@@ -798,6 +930,7 @@ const CONFIG = {
        ---------------------------------------------------------------------- */
     function boot() {
         bindBusinessData();
+        initPicker();
         initForm();
         initNavStuck();
         const closeDrawer = initDrawer();
