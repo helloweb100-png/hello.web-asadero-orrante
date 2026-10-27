@@ -18,12 +18,13 @@ const CONFIG = {
     // Sucursales. Cada una recibe los pedidos en su propio WhatsApp.
     //   phone:   formato internacional sin "+", espacios ni guiones. México: 52 + 10 dígitos. Ejemplo: '526141234567'
     //   address: opcional. Ejemplo: 'Av. Principal 123, Col. Centro, Ciudad'
-    // Las sucursales sin teléfono válido no se muestran. Con una sola, los botones abren su WhatsApp directo;
-    // con dos o más, los botones abren un selector de sucursal.
+    //   maps:    opcional. Enlace de Google Maps de la sucursal.
+    // Sin teléfono válido la sucursal no recibe pedidos por WhatsApp, pero si tiene "maps" aparece en Contacto con su ubicación.
+    // Con un solo teléfono válido, los botones abren su WhatsApp directo; con dos o más, abren un selector de sucursal.
     branches: [
-        { name: 'Santa Teresa', phone: '', address: '' },
-        { name: '', phone: '', address: '' },   // sin nombre se muestra como "Sucursal 2"
-        { name: '', phone: '', address: '' }    // sin nombre se muestra como "Sucursal 3"
+        { name: 'Santa Teresa',   phone: '', address: 'Av. Munich 20526, Santa Teresa, 82090 Mazatlán, Sin.',               maps: 'https://maps.app.goo.gl/6mhzQsrkeW78oBV77' },
+        { name: 'Santa Rosa',     phone: '', address: 'Av. Sta. Rosa 203, Burócratas, 82163 Mazatlán, Sin.',                 maps: 'https://maps.app.goo.gl/tvmYGEYAYsNUfpXv9' },
+        { name: 'Real del Valle', phone: '', address: 'Av. Paseo del Atlántico 4113, Real del Valle, 82124 Mazatlán, Sin.', maps: 'https://maps.app.goo.gl/miVXDajTn7BUJZbM6' }
     ],
 
     // Horario. Ejemplo: 'Lunes a domingo de 9:00 a 20:00'
@@ -71,9 +72,9 @@ const CONFIG = {
        WhatsApp, contacto y datos del negocio
        ---------------------------------------------------------------------- */
     const isPhone = p => /^\d{10,15}$/.test(p) && !/^(52)?0+$/.test(p);
-    const branches = CONFIG.branches
-        .map((b, i) => ({ ...b, name: b.name || `Sucursal ${i + 1}` }))
-        .filter(b => isPhone(b.phone));
+    const named = CONFIG.branches.map((b, i) => ({ ...b, name: b.name || `Sucursal ${i + 1}` }));
+    const branches = named.filter(b => isPhone(b.phone));              // reciben pedidos por WhatsApp
+    const places = named.filter(b => b.maps || isPhone(b.phone));      // se muestran en Contacto y footer
     const showPhone = p => (/^52\d{10}$/.test(p) ? `+52 ${p.slice(2, 5)} ${p.slice(5, 8)} ${p.slice(8)}` : `+${p}`);
     // Sin teléfono explícito usa la primera sucursal (los botones generales abren el selector si hay varias)
     const waLink = (msg, phone = branches.length ? branches[0].phone : '') => `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
@@ -148,24 +149,65 @@ const CONFIG = {
         return a;
     }
 
+    // Enlace a la ubicación de una sucursal en Google Maps. Sin "compact" es la tarjeta completa (sucursal que aún no tiene WhatsApp);
+    // con "compact" es un enlace chico que acompaña a la tarjeta de WhatsApp.
+    function mapLink(b, compact) {
+        const a = doc.createElement('a');
+        a.href = b.maps;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.setAttribute('aria-label', `Ver la ubicación de ${b.name} en Google Maps${b.address ? `: ${b.address}` : ''}`);
+
+        if (compact) {
+            a.className = 'branch__map';
+            a.append(icon('i-map-pin'), 'Ver ubicación en Maps');
+            return a;
+        }
+
+        a.className = 'branch';
+        const ico = doc.createElement('span');
+        ico.className = 'info__icon';
+        ico.appendChild(icon('i-map-pin'));
+
+        const txt = doc.createElement('span');
+        txt.className = 'branch__txt';
+        const name = doc.createElement('strong');
+        name.textContent = b.name;
+        txt.appendChild(name);
+        if (b.address) {
+            const s = doc.createElement('span');
+            s.textContent = b.address;
+            txt.appendChild(s);
+        }
+
+        a.append(ico, txt, icon('i-arrow-up-right', 'ic branch__go'));
+        return a;
+    }
+
     function renderBranches() {
-        if (!branches.length) return; // sin datos reales se conservan los textos neutros del HTML
+        if (!places.length) return; // sin datos reales se conservan los textos neutros del HTML
         const msg = 'Hola, quiero hacer un pedido en Asadero Orrante.';
 
         const wrap = $('[data-branches]');
         const list = $('[data-branch-list]');
         if (wrap && list) {
-            branches.forEach(b => {
+            places.forEach(b => {
                 const li = doc.createElement('li');
-                li.appendChild(branchLink(b, msg, true));
+                if (isPhone(b.phone)) {
+                    li.appendChild(branchLink(b, msg, true));
+                    if (b.maps) li.appendChild(mapLink(b, true));
+                } else {
+                    li.appendChild(mapLink(b, false));
+                }
                 list.appendChild(li);
             });
             wrap.hidden = false;
-            $$('[data-branch-fallback]').forEach(el => { el.hidden = true; });
+            $$('[data-branch-fallback="map"]').forEach(el => { el.hidden = true; });
+            if (branches.length) $$('[data-branch-fallback="wa"]').forEach(el => { el.hidden = true; });
         }
 
         const foot = $('[data-footer-branches]');
-        if (foot) {
+        if (foot && branches.length) {
             branches.forEach(b => {
                 const a = doc.createElement('a');
                 a.href = waLink(msg, b.phone);
@@ -178,11 +220,21 @@ const CONFIG = {
         }
 
         const addr = $('.footer address');
-        const withAddress = branches.filter(b => b.address);
+        const withAddress = places.filter(b => b.address);
         if (addr && withAddress.length) {
             addr.replaceChildren(...withAddress.map(b => {
                 const p = doc.createElement('p');
-                p.textContent = `${b.name}: ${b.address}`;
+                const text = `${b.name}: ${b.address}`;
+                if (b.maps) {
+                    const a = doc.createElement('a');
+                    a.href = b.maps;
+                    a.target = '_blank';
+                    a.rel = 'noopener noreferrer';
+                    a.textContent = text;
+                    p.appendChild(a);
+                } else {
+                    p.textContent = text;
+                }
                 return p;
             }));
         }
@@ -672,7 +724,7 @@ const CONFIG = {
                 scrollTrigger: { trigger: h, start: 'top 88%', once: true }
             });
         });
-        $$('.menu__lead, .menu__outro > *, .steps__aside > p, .steps__aside > .btn, .contact__lead, .contact__info > .info, .finale__text, .finale__copy > .btn, .menu__intro > .eyebrow, .contact__info > .eyebrow, .deals__head > .eyebrow, .deals__lead, .deals__tags, .deals__cta').forEach((el, i) => {
+        $$('.menu__lead, .menu__outro > *, .steps__aside > p, .steps__aside > .btn, .contact__lead, .contact__info > .info, .finale__text, .finale__copy > .btn, .menu__intro > .eyebrow, .contact__info > .eyebrow, .deals__head > .eyebrow, .gallery__head > .eyebrow, .deals__lead, .deals__tags, .deals__cta').forEach((el, i) => {
             gsap.fromTo(el, { opacity: 0, y: 30 }, {
                 opacity: 1, y: 0, duration: 1.2, ease: 'expo.out',
                 scrollTrigger: { trigger: el, start: 'top 92%', once: true }

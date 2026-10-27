@@ -754,6 +754,26 @@ body::after {
 .cell--sauce img { object-position: 50% 80%; transform: scale(1.7); transform-origin: 52% 80%; }
 .cell--sauce:hover img { transform: scale(1.78); }
 
+/* 12b · GALERÍA: mosaico de fotos de cocina ---------------------------------- */
+.gallery__head { display: grid; gap: 1rem; justify-items: start; margin-bottom: clamp(2rem, 5vw, 3.4rem); }
+.gallery__head h2 {
+    max-width: 12ch;
+    font-family: var(--ff-display); font-weight: 800; font-stretch: 94%;
+    font-size: clamp(2.6rem, 9vw, 5.8rem); line-height: .94; letter-spacing: -.026em;
+}
+.gallery__grid {
+    --row: clamp(150px, 42vw, 230px);
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: var(--row); grid-auto-flow: dense; gap: 10px;
+}
+.gal {
+    position: relative; overflow: hidden;
+    border: 1px solid var(--line); border-radius: clamp(16px, 3vw, var(--r-lg)); background: var(--ink-850);
+}
+.gal img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s var(--ease-out); }
+.gal:hover img { transform: scale(1.06); }
+.gal--tall { grid-row: span 2; }
+.gal--wide { grid-column: span 2; }
+
 /* 13 · PASOS APILADOS ------------------------------------------------------- */
 .steps { padding: clamp(5rem, 12vw, 10rem) 0; background: linear-gradient(180deg, var(--ink-950), var(--ink-900)); }
 .steps__grid { display: grid; gap: 2.4rem; }
@@ -859,6 +879,13 @@ body::after {
 .branch__txt span { font-size: .9rem; line-height: 1.35; color: var(--paper-dim); }
 .branch__go { width: 1.2rem; height: 1.2rem; color: var(--flame-400); transition: transform .5s var(--ease-out); }
 .branch:hover .branch__go { transform: translate(3px, -3px); }
+.branches__list li { display: grid; }
+.branch__map {
+    display: inline-flex; align-items: center; justify-self: start; gap: .45rem; min-height: 44px; padding: 0 .4rem 0 .9rem;
+    font-size: .92rem; font-weight: 600; color: var(--flame-400); text-decoration: none; transition: color .3s;
+}
+.branch__map .ic { width: 1.1rem; height: 1.1rem; }
+.branch__map:hover { color: var(--flame-300); }
 
 /* Selector de sucursal (<dialog> modal: foco atrapado, Esc y fondo inerte de serie) */
 .picker {
@@ -1062,6 +1089,8 @@ body::after {
     .plists { grid-template-columns: repeat(2, 1fr); align-items: start; }
     .plist--wide { grid-column: 1 / -1; }
     .drinks { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+
+    .gallery__grid { --row: clamp(180px, 22vw, 300px); grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
 
     .bento { grid-template-columns: repeat(6, 1fr); grid-auto-rows: minmax(250px, auto); }
     .cell--cook { grid-column: 1 / span 2; grid-row: 1 / span 2; }

@@ -277,7 +277,7 @@
                     Lo que sale de la brasa
                 </p>
                 <h2 id="menu-title" data-split>Elige tu antojo.</h2>
-                <p class="menu__lead">Seis opciones para empezar. Dinos cuál se te antoja y te la preparamos.</p>
+                <p class="menu__lead">Ocho opciones para empezar. Dinos cuál se te antoja y te la preparamos.</p>
             </div>
 
             <ul class="menu__list" role="list">
@@ -298,6 +298,26 @@
                             <h3>Carne asada</h3>
                             <p>Sirloin asado al carbón, acompañado de tortillas, chile toreado y salsa tatemada.</p>
                             <a class="pcard__link" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero pedir carne asada." aria-label="Pedir carne asada por WhatsApp">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+                        </div>
+                    </article>
+                </li>
+                <li class="pcard">
+                    <article class="pcard__inner" data-spot>
+                        <div class="pcard__media"><img class="pcard__img pcard__img--top" src="img/arrachera-marinada.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Arrachera marinada rebanada sobre tabla de madera, con salsa, cebolla y cilantro"></div>
+                        <div class="pcard__body">
+                            <h3>Arrachera marinada</h3>
+                            <p>Arrachera marinada y asada al carbón, con cebolla, cilantro y salsa.</p>
+                            <a class="pcard__link" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero pedir arrachera marinada." aria-label="Pedir arrachera marinada por WhatsApp">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+                        </div>
+                    </article>
+                </li>
+                <li class="pcard">
+                    <article class="pcard__inner" data-spot>
+                        <div class="pcard__media"><img class="pcard__img pcard__img--bottom" src="img/carne-adobada.webp" width="1080" height="1080" loading="lazy" decoding="async" alt="Plato de carne adobada con cebolla y cilantro y chiles toreados"></div>
+                        <div class="pcard__body">
+                            <h3>Carne adobada</h3>
+                            <p>Carne adobada al carbón, acompañada de cebolla con cilantro y chile toreado.</p>
+                            <a class="pcard__link" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero pedir carne adobada." aria-label="Pedir carne adobada por WhatsApp">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
                         </div>
                     </article>
                 </li>
@@ -657,6 +677,30 @@
     </div>
 </section>
 
+<!-- ═════════════ GALERÍA: directo de la cocina ═════════════ -->
+<section class="gallery" id="galeria" aria-labelledby="galeria-title">
+    <div class="container">
+        <header class="gallery__head">
+            <p class="eyebrow">
+                <svg class="ic" aria-hidden="true"><use href="#i-fire-fill"/></svg>
+                Directo de la cocina
+            </p>
+            <h2 id="galeria-title" data-split>Así se sirve en Orrante.</h2>
+        </header>
+
+        <ul class="gallery__grid" role="list">
+            <li class="gal" data-reveal><img src="img/taco-carne-asada-salsa-roja.webp" width="800" height="800" loading="lazy" decoding="async" alt="Taco de carne asada en tortilla de harina mientras le sirven salsa roja"></li>
+            <li class="gal gal--tall" data-reveal><img src="img/mesa-charolas-papa-con-carne.webp" width="720" height="1283" loading="lazy" decoding="async" alt="Mesa con charolas de carne y pollo asado, guacamole y una charola de carne picada con crema"></li>
+            <li class="gal" data-reveal><img src="img/taco-pollo-salsa-aguacate.webp" width="800" height="800" loading="lazy" decoding="async" alt="Taco de pollo con salsa roja, cebolla, cilantro y salsa verde cremosa"></li>
+            <li class="gal gal--wide" data-reveal><img src="img/guacamole-en-bowl.webp" width="1200" height="674" loading="lazy" decoding="async" alt="Guacamole con jitomate en un tazón de acero"></li>
+            <li class="gal gal--tall" data-reveal><img src="img/manos-armando-taco.webp" width="720" height="1283" loading="lazy" decoding="async" alt="Manos armando un taco con carne, cebolla y cilantro"></li>
+            <li class="gal" data-reveal><img src="img/taco-carne-asada-salsa-verde.webp" width="800" height="800" loading="lazy" decoding="async" alt="Taco de carne asada con salsa roja mientras le sirven salsa verde"></li>
+            <li class="gal" data-reveal><img src="img/guacamole-sirviendo-vasitos.webp" width="1200" height="674" loading="lazy" decoding="async" alt="Sirviendo guacamole en vasitos con una pinza"></li>
+            <li class="gal gal--wide" data-reveal><img src="img/guacamole-en-vasitos.webp" width="1200" height="674" loading="lazy" decoding="async" alt="Vasitos de guacamole en una mesa de acero"></li>
+        </ul>
+    </div>
+</section>
+
 <!-- ═════════════ CÓMO PEDIR: tarjetas apiladas ═════════════ -->
 <section class="steps" id="pedir" aria-labelledby="pedir-title">
     <div class="container steps__grid">
@@ -736,11 +780,11 @@
             </div>
 
             <ul class="info" role="list">
-                <li data-branch-fallback>
+                <li data-branch-fallback="wa">
                     <span class="info__icon"><svg class="ic" aria-hidden="true"><use href="#i-whatsapp-logo"/></svg></span>
                     <div><strong>WhatsApp</strong><span>Escríbenos y te respondemos en cuanto podamos.</span></div>
                 </li>
-                <li data-branch-fallback>
+                <li data-branch-fallback="map">
                     <span class="info__icon"><svg class="ic" aria-hidden="true"><use href="#i-map-pin"/></svg></span>
                     <div><strong>Ubicación</strong><span>Pídenos la ubicación por WhatsApp.</span></div>
                 </li>
@@ -769,6 +813,8 @@
                 <div class="chips">
                     <label class="chip"><input type="checkbox" name="antojo" value="Pollo asado"><span>Pollo asado</span></label>
                     <label class="chip"><input type="checkbox" name="antojo" value="Carne asada"><span>Carne asada</span></label>
+                    <label class="chip"><input type="checkbox" name="antojo" value="Arrachera marinada"><span>Arrachera marinada</span></label>
+                    <label class="chip"><input type="checkbox" name="antojo" value="Carne adobada"><span>Carne adobada</span></label>
                     <label class="chip"><input type="checkbox" name="antojo" value="Costillitas BBQ"><span>Costillitas BBQ</span></label>
                     <label class="chip"><input type="checkbox" name="antojo" value="Pechuga asada"><span>Pechuga asada</span></label>
                     <label class="chip"><input type="checkbox" name="antojo" value="Pollo crujiente"><span>Pollo crujiente</span></label>
