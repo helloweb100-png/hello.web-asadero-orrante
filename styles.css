@@ -160,6 +160,7 @@ body::after {
     letter-spacing: .14em; text-transform: uppercase; color: var(--flame-400);
 }
 .eyebrow .ic { width: 1rem; height: 1rem; }
+.hero .eyebrow { text-wrap: balance; } /* "Carnes, pollo y cortes, todo al carbón" no deja una palabra sola en móvil */
 
 /* Texto con gradiente de flama (solo en palabras de énfasis) */
 .grad {
@@ -644,7 +645,7 @@ body::after {
 }
 .pkg__cta { margin-top: auto; align-self: flex-start; }
 
-/* Tarjetas destacadas: promoción y costilla (mismo lenguaje que la celda "A la brasa") */
+/* Tarjetas destacadas: promoción y costilla (mismo lenguaje que la celda "Todo al carbón") */
 .pkg--hot .pkg__inner {
     justify-content: flex-end; gap: .35rem; min-height: 250px;
     border-color: rgba(232, 86, 27, .35);
@@ -688,6 +689,18 @@ body::after {
 .plist li b {
     font-family: var(--ff-display); font-weight: 700; font-size: 1.12rem; font-variant-numeric: tabular-nums;
     color: var(--flame-300);
+}
+.drinks { display: grid; gap: 1.6rem; }
+.drinks h4 {
+    margin: 0 0 .8rem;
+    font-family: var(--ff-mono); font-weight: 500; font-size: .76rem; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--flame-400);
+}
+.drinks__list { display: flex; flex-wrap: wrap; gap: .55rem; }
+.drinks__list li {
+    display: inline-flex; align-items: center; min-height: 40px; padding: 0 1.05rem;
+    border: 1px solid var(--line-strong); border-radius: var(--r-pill); background: rgba(255, 255, 255, .03);
+    font-weight: 500; font-size: .95rem;
 }
 .deals__cta { display: flex; justify-content: center; margin-top: clamp(2.2rem, 5vw, 3.4rem); }
 
@@ -1047,6 +1060,8 @@ body::after {
     .deals__grid { grid-template-columns: repeat(2, 1fr); }
     .pkg--hot:last-child { grid-column: 1 / -1; }
     .plists { grid-template-columns: repeat(2, 1fr); align-items: start; }
+    .plist--wide { grid-column: 1 / -1; }
+    .drinks { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
 
     .bento { grid-template-columns: repeat(6, 1fr); grid-auto-rows: minmax(250px, auto); }
     .cell--cook { grid-column: 1 / span 2; grid-row: 1 / span 2; }
