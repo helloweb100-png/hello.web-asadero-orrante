@@ -990,7 +990,7 @@ body::after {
 .footer__giant {
     margin-top: clamp(2rem, 6vw, 4rem); text-align: center; user-select: none;
     font-family: var(--ff-display); font-weight: 800; font-stretch: 75%;
-    font-size: min(26rem, 21.5vw); line-height: .78; letter-spacing: -.04em; text-transform: uppercase;
+    font-size: min(20rem, 15.5vw); line-height: .78; letter-spacing: -.04em; text-transform: uppercase; white-space: nowrap;
     color: transparent;
     background: linear-gradient(180deg, rgba(232, 86, 27, .6), rgba(122, 28, 36, .12) 82%);
     -webkit-background-clip: text; background-clip: text;
@@ -1101,7 +1101,7 @@ body::after {
     .cell h3 { font-size: 1.7rem; }
 
     .footer__top { grid-template-columns: 1.4fr 1fr 1fr; align-items: start; }
-    .footer__giant { font-size: min(26rem, 28vw); }
+    .footer__giant { font-size: min(20rem, 16vw); }
     .form { padding: 2.2rem; }
 }
 
