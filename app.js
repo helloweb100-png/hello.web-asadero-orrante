@@ -17,14 +17,16 @@
 const CONFIG = {
     // Sucursales. Cada una recibe los pedidos en su propio WhatsApp.
     //   phone:   formato internacional sin "+", espacios ni guiones. México: 52 + 10 dígitos. Ejemplo: '526141234567'
+    //   wa:      opcional. Enlace de WhatsApp de la sucursal (https://wa.me/message/...). Se usa cuando no hay "phone".
+    //            Ese tipo de enlace no lleva el texto del pedido escrito; con "phone" sí.
     //   address: opcional. Ejemplo: 'Av. Principal 123, Col. Centro, Ciudad'
     //   maps:    opcional. Enlace de Google Maps de la sucursal.
-    // Sin teléfono válido la sucursal no recibe pedidos por WhatsApp, pero si tiene "maps" aparece en Contacto con su ubicación.
-    // Con un solo teléfono válido, los botones abren su WhatsApp directo; con dos o más, abren un selector de sucursal.
+    // Sin teléfono ni enlace "wa" la sucursal no recibe pedidos por WhatsApp, pero si tiene "maps" aparece en Contacto con su ubicación.
+    // Con una sola sucursal de WhatsApp, los botones abren su WhatsApp directo; con dos o más, abren un selector de sucursal.
     branches: [
-        { name: 'Santa Teresa',   phone: '', address: 'Av. Munich 20526, Santa Teresa, 82090 Mazatlán, Sin.',               maps: 'https://maps.app.goo.gl/6mhzQsrkeW78oBV77' },
-        { name: 'Santa Rosa',     phone: '', address: 'Av. Sta. Rosa 203, Burócratas, 82163 Mazatlán, Sin.',                 maps: 'https://maps.app.goo.gl/tvmYGEYAYsNUfpXv9' },
-        { name: 'Real del Valle', phone: '', address: 'Av. Paseo del Atlántico 4113, Real del Valle, 82124 Mazatlán, Sin.', maps: 'https://maps.app.goo.gl/miVXDajTn7BUJZbM6' }
+        { name: 'Santa Teresa',   phone: '', wa: 'https://wa.me/message/AT37LAXE42GYG1', address: 'Av. Munich 20526, Santa Teresa, 82090 Mazatlán, Sin.',               maps: 'https://maps.app.goo.gl/6mhzQsrkeW78oBV77' },
+        { name: 'Santa Rosa',     phone: '', wa: 'https://wa.me/message/YLUORHJ27VBAA1', address: 'Av. Sta. Rosa 203, Burócratas, 82163 Mazatlán, Sin.',                 maps: 'https://maps.app.goo.gl/tvmYGEYAYsNUfpXv9' },
+        { name: 'Real del Valle', phone: '', wa: 'https://wa.me/message/RHOAPYBT4UK7O1', address: 'Av. Paseo del Atlántico 4113, Real del Valle, 82124 Mazatlán, Sin.', maps: 'https://maps.app.goo.gl/miVXDajTn7BUJZbM6' }
     ],
 
     // Horario. Ejemplo: 'Lunes a domingo de 9:00 a 20:00'
@@ -72,12 +74,17 @@ const CONFIG = {
        WhatsApp, contacto y datos del negocio
        ---------------------------------------------------------------------- */
     const isPhone = p => /^\d{10,15}$/.test(p) && !/^(52)?0+$/.test(p);
+    const hasWa = b => isPhone(b.phone) || /^https:\/\/wa\.me\//.test(b.wa || '');
     const named = CONFIG.branches.map((b, i) => ({ ...b, name: b.name || `Sucursal ${i + 1}` }));
-    const branches = named.filter(b => isPhone(b.phone));              // reciben pedidos por WhatsApp
-    const places = named.filter(b => b.maps || isPhone(b.phone));      // se muestran en Contacto y footer
+    const branches = named.filter(hasWa);                              // reciben pedidos por WhatsApp
+    const places = named.filter(b => b.maps || hasWa(b));              // se muestran en Contacto y footer
     const showPhone = p => (/^52\d{10}$/.test(p) ? `+52 ${p.slice(2, 5)} ${p.slice(5, 8)} ${p.slice(8)}` : `+${p}`);
-    // Sin teléfono explícito usa la primera sucursal (los botones generales abren el selector si hay varias)
-    const waLink = (msg, phone = branches.length ? branches[0].phone : '') => `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+    // Sin sucursal explícita usa la primera (los botones generales abren el selector si hay varias).
+    // Con teléfono lleva el mensaje escrito; sin teléfono usa el enlace "wa" de la sucursal tal cual.
+    const waLink = (msg, b = branches[0]) => {
+        if (!b) return `https://wa.me/?text=${encodeURIComponent(msg)}`;
+        return isPhone(b.phone) ? `https://wa.me/${b.phone}?text=${encodeURIComponent(msg)}` : b.wa;
+    };
 
     function bindBusinessData() {
         if (!branches.length) {
@@ -123,7 +130,7 @@ const CONFIG = {
     function branchLink(b, msg, full) {
         const a = doc.createElement('a');
         a.className = 'branch';
-        a.href = waLink(msg, b.phone);
+        a.href = waLink(msg, b);
         a.target = '_blank';
         a.rel = 'noopener noreferrer';
 
@@ -137,7 +144,7 @@ const CONFIG = {
         name.textContent = b.name;
         txt.appendChild(name);
         const lines = full
-            ? [b.address || 'Pídenos la ubicación por WhatsApp.', showPhone(b.phone)]
+            ? [b.address || 'Pídenos la ubicación por WhatsApp.', isPhone(b.phone) && showPhone(b.phone)].filter(Boolean)
             : [b.address].filter(Boolean);
         lines.forEach(line => {
             const s = doc.createElement('span');
@@ -193,7 +200,7 @@ const CONFIG = {
         if (wrap && list) {
             places.forEach(b => {
                 const li = doc.createElement('li');
-                if (isPhone(b.phone)) {
+                if (hasWa(b)) {
                     li.appendChild(branchLink(b, msg, true));
                     if (b.maps) li.appendChild(mapLink(b, true));
                 } else {
@@ -210,7 +217,7 @@ const CONFIG = {
         if (foot && branches.length) {
             branches.forEach(b => {
                 const a = doc.createElement('a');
-                a.href = waLink(msg, b.phone);
+                a.href = waLink(msg, b);
                 a.target = '_blank';
                 a.rel = 'noopener noreferrer';
                 a.textContent = b.name;
