@@ -81,6 +81,9 @@
 <symbol id="i-sparkle" viewBox="0 0 256 256" fill="currentColor"><path d="M197.58,129.06,146,110l-19-51.62a15.92,15.92,0,0,0-29.88,0L78,110l-51.62,19a15.92,15.92,0,0,0,0,29.88L78,178l19,51.62a15.92,15.92,0,0,0,29.88,0L146,178l51.62-19a15.92,15.92,0,0,0,0-29.88ZM137,164.22a8,8,0,0,0-4.74,4.74L112,223.85,91.78,169A8,8,0,0,0,87,164.22L32.15,144,87,123.78A8,8,0,0,0,91.78,119L112,64.15,132.22,119a8,8,0,0,0,4.74,4.74L191.85,144ZM144,40a8,8,0,0,1,8-8h16V16a8,8,0,0,1,16,0V32h16a8,8,0,0,1,0,16H184V64a8,8,0,0,1-16,0V48H152A8,8,0,0,1,144,40ZM248,88a8,8,0,0,1-8,8h-8v8a8,8,0,0,1-16,0V96h-8a8,8,0,0,1,0-16h8V72a8,8,0,0,1,16,0v8h8A8,8,0,0,1,248,88Z"/></symbol>
 <symbol id="i-fire-fill" viewBox="0 0 256 256" fill="currentColor"><path d="M143.38,17.85a8,8,0,0,0-12.63,3.41l-22,60.41L84.59,58.26a8,8,0,0,0-11.93.89C51,87.53,40,116.08,40,144a88,88,0,0,0,176,0C216,84.55,165.21,36,143.38,17.85Zm40.51,135.49a57.6,57.6,0,0,1-46.56,46.55A7.65,7.65,0,0,1,136,200a8,8,0,0,1-1.32-15.89c16.57-2.79,30.63-16.85,33.44-33.45a8,8,0,0,1,15.78,2.68Z"/></symbol>
 <symbol id="i-x" viewBox="0 0 256 256" fill="currentColor"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></symbol>
+<symbol id="i-plus" viewBox="0 0 256 256" fill="currentColor"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></symbol>
+<symbol id="i-minus" viewBox="0 0 256 256" fill="currentColor"><path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128Z"/></symbol>
+<symbol id="i-bag" viewBox="0 0 256 256" fill="currentColor"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,160H40V56H216V200ZM176,88a48,48,0,0,1-96,0,8,8,0,0,1,16,0,32,32,0,0,0,64,0,8,8,0,0,1,16,0Z"/></symbol>
 <symbol id="i-whatsapp-logo-fill"viewBox="0 0 256 256" fill="currentColor"><path d="M152.58,145.23l23,11.48A24,24,0,0,1,152,176a72.08,72.08,0,0,1-72-72A24,24,0,0,1,99.29,80.46l11.48,23L101,118a8,8,0,0,0-.73,7.51,56.47,56.47,0,0,0,30.15,30.15A8,8,0,0,0,138,155ZM232,128A104,104,0,0,1,79.12,219.82L45.07,231.17a16,16,0,0,1-20.24-20.24l11.35-34.05A104,104,0,1,1,232,128Zm-40,24a8,8,0,0,0-4.42-7.16l-32-16a8,8,0,0,0-8,.5l-14.69,9.8a40.55,40.55,0,0,1-16-16l9.8-14.69a8,8,0,0,0,.5-8l-16-32A8,8,0,0,0,104,64a40,40,0,0,0-40,40,88.1,88.1,0,0,0,88,88A40,40,0,0,0,192,152Z"/></symbol>
 </svg>
 
@@ -287,7 +290,7 @@
                         <div class="pcard__body">
                             <h3>Pollo asado</h3>
                             <p>Asado al carbón y coronado con cebolla, cilantro y chile toreado. Con tortilla y salsa tatemada.</p>
-                            <a class="pcard__link" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero pedir pollo asado." aria-label="Pedir pollo asado por WhatsApp">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+                            <button class="pcard__link" type="button" data-add aria-label="Agregar pollo asado al pedido">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
                         </div>
                     </article>
                 </li>
@@ -297,7 +300,7 @@
                         <div class="pcard__body">
                             <h3>Carne asada</h3>
                             <p>Sirloin asado al carbón, acompañado de tortillas, chile toreado y salsa tatemada.</p>
-                            <a class="pcard__link" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero pedir carne asada." aria-label="Pedir carne asada por WhatsApp">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+                            <button class="pcard__link" type="button" data-add aria-label="Agregar carne asada al pedido">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
                         </div>
                     </article>
                 </li>
@@ -307,7 +310,7 @@
                         <div class="pcard__body">
                             <h3>Arrachera marinada</h3>
                             <p>Arrachera marinada y asada al carbón, con cebolla y cilantro, salsa tatemada, chile toreado y tortillas.</p>
-                            <a class="pcard__link" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero pedir arrachera marinada." aria-label="Pedir arrachera marinada por WhatsApp">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+                            <button class="pcard__link" type="button" data-add aria-label="Agregar arrachera marinada al pedido">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
                         </div>
                     </article>
                 </li>
@@ -317,7 +320,7 @@
                         <div class="pcard__body">
                             <h3>Carne adobada</h3>
                             <p>Carne adobada al carbón, acompañada de cebolla con cilantro, chile toreado, salsa tatemada y tortillas.</p>
-                            <a class="pcard__link" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero pedir carne adobada." aria-label="Pedir carne adobada por WhatsApp">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+                            <button class="pcard__link" type="button" data-add aria-label="Agregar carne adobada al pedido">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
                         </div>
                     </article>
                 </li>
@@ -327,7 +330,7 @@
                         <div class="pcard__body">
                             <h3>Costillitas BBQ</h3>
                             <p>Costilla a la BBQ acompañada de papas a la francesa y elote asado, con aderezo ranch y spicy.</p>
-                            <a class="pcard__link" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero pedir costillitas BBQ." aria-label="Pedir costillitas BBQ por WhatsApp">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+                            <button class="pcard__link" type="button" data-add aria-label="Agregar costillitas BBQ al pedido">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
                         </div>
                     </article>
                 </li>
@@ -337,7 +340,7 @@
                         <div class="pcard__body">
                             <h3>Pollo BBQ</h3>
                             <p>Pollo a la BBQ acompañado de papas a la francesa y elote asado.</p>
-                            <a class="pcard__link" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero pedir pollo BBQ." aria-label="Pedir pollo BBQ por WhatsApp">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+                            <button class="pcard__link" type="button" data-add aria-label="Agregar pollo BBQ al pedido">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
                         </div>
                     </article>
                 </li>
@@ -347,7 +350,7 @@
                         <div class="pcard__body">
                             <h3>Pechuga asada</h3>
                             <p>Tiras de pechuga sazonadas y asadas, con cebolla, cilantro y salsa.</p>
-                            <a class="pcard__link" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero pedir pechuga asada." aria-label="Pedir pechuga asada por WhatsApp">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+                            <button class="pcard__link" type="button" data-add aria-label="Agregar pechuga asada al pedido">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
                         </div>
                     </article>
                 </li>
@@ -357,7 +360,7 @@
                         <div class="pcard__body">
                             <h3>Dedos de pollo</h3>
                             <p>Crujientes, acompañados de papas a la francesa, elote asado y aderezo ranch.</p>
-                            <a class="pcard__link" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero pedir dedos de pollo con papas." aria-label="Pedir dedos de pollo por WhatsApp">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+                            <button class="pcard__link" type="button" data-add aria-label="Agregar dedos de pollo al pedido">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
                         </div>
                     </article>
                 </li>
@@ -367,7 +370,7 @@
                         <div class="pcard__body">
                             <h3>Papa con carne</h3>
                             <p>Carne asada picada sobre puré gratinado, con salsa, chile toreado y tortillas.</p>
-                            <a class="pcard__link" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero pedir una papa con carne." aria-label="Pedir papa con carne por WhatsApp">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+                            <button class="pcard__link" type="button" data-add aria-label="Agregar papa con carne al pedido">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
                         </div>
                     </article>
                 </li>
@@ -408,10 +411,10 @@
                     <p class="pkg__badge">Promoción</p>
                     <h3 class="pkg__hot-title">2 pollos grandes</h3>
                     <p class="pkg__price">$295</p>
-                    <a class="btn btn--paper btn--sm" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero la promoción de 2 pollos grandes." aria-label="Pedir la promoción de 2 pollos grandes por WhatsApp">
+                    <button class="btn btn--paper btn--sm" type="button" data-add="Promoción 2 pollos grandes" aria-label="Agregar la promoción de 2 pollos grandes al pedido">
                         <span>¡Quiero la promo!</span>
-                        <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg>
-                    </a>
+                        <svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg>
+                    </button>
                 </article>
             </li>
 
@@ -429,7 +432,7 @@
                         <li>Salsa tatemada</li>
                         <li>Tortillas</li>
                     </ul>
-                    <a class="pkg__cta" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero el Paquete 1." aria-label="Pedir el Paquete 1 por WhatsApp">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+                    <button class="pkg__cta" type="button" data-add aria-label="Agregar el Paquete 1 al pedido">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
                 </article>
             </li>
 
@@ -449,7 +452,7 @@
                         <li>Salsa tatemada</li>
                         <li>Chiles toreados</li>
                     </ul>
-                    <a class="pkg__cta" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero el Paquete 2." aria-label="Pedir el Paquete 2 por WhatsApp">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+                    <button class="pkg__cta" type="button" data-add aria-label="Agregar el Paquete 2 al pedido">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
                 </article>
             </li>
 
@@ -469,7 +472,7 @@
                         <li>Salsa tatemada</li>
                         <li>Chiles toreados</li>
                     </ul>
-                    <a class="pkg__cta" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero el Paquete 3." aria-label="Pedir el Paquete 3 por WhatsApp">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+                    <button class="pkg__cta" type="button" data-add aria-label="Agregar el Paquete 3 al pedido">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
                 </article>
             </li>
 
@@ -490,7 +493,7 @@
                         <li>Salsa tatemada</li>
                         <li>Chiles toreados</li>
                     </ul>
-                    <a class="pkg__cta" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero el Paquete 4." aria-label="Pedir el Paquete 4 por WhatsApp">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+                    <button class="pkg__cta" type="button" data-add aria-label="Agregar el Paquete 4 al pedido">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
                 </article>
             </li>
 
@@ -510,7 +513,7 @@
                         <li>Tortillas</li>
                         <li>Chiles toreados</li>
                     </ul>
-                    <a class="pkg__cta" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero el Paquete 5." aria-label="Pedir el Paquete 5 por WhatsApp">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+                    <button class="pkg__cta" type="button" data-add aria-label="Agregar el Paquete 5 al pedido">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
                 </article>
             </li>
 
@@ -528,7 +531,7 @@
                         <li>Tortillas</li>
                         <li>Chiles toreados</li>
                     </ul>
-                    <a class="pkg__cta" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero el Paquete 6." aria-label="Pedir el Paquete 6 por WhatsApp">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+                    <button class="pkg__cta" type="button" data-add aria-label="Agregar el Paquete 6 al pedido">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
                 </article>
             </li>
 
@@ -548,7 +551,7 @@
                         <li>Salsa tatemada</li>
                         <li>Tortillas</li>
                     </ul>
-                    <a class="pkg__cta" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero el Paquete 7." aria-label="Pedir el Paquete 7 por WhatsApp">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></a>
+                    <button class="pkg__cta" type="button" data-add aria-label="Agregar el Paquete 7 al pedido">Lo quiero <svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
                 </article>
             </li>
 
@@ -556,10 +559,10 @@
                 <article class="pkg__inner">
                     <h3 class="pkg__hot-title">Costilla BBQ</h3>
                     <p class="pkg__price">$250</p>
-                    <a class="btn btn--paper btn--sm" href="https://wa.me/" target="_blank" rel="noopener noreferrer" data-wa="Hola, quiero pedir Costilla BBQ." aria-label="Pedir Costilla BBQ por WhatsApp">
+                    <button class="btn btn--paper btn--sm" type="button" data-add aria-label="Agregar Costilla BBQ al pedido">
                         <span>Lo quiero</span>
-                        <svg class="ic" aria-hidden="true"><use href="#i-arrow-up-right"/></svg>
-                    </a>
+                        <svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg>
+                    </button>
                 </article>
             </li>
         </ul>
@@ -568,37 +571,37 @@
             <section class="plist" data-reveal aria-labelledby="llevar-title">
                 <h3 id="llevar-title">Listos para llevar</h3>
                 <ul role="list">
-                    <li><span>1 kg de carne asada</span><b>$320</b></li>
-                    <li><span>1/2 kg de carne asada</span><b>$170</b></li>
-                    <li><span>1 kg de adobada</span><b>$220</b></li>
-                    <li><span>1/2 kg de adobada</span><b>$115</b></li>
-                    <li><span>1 kg de arrachera</span><b>$380</b></li>
-                    <li><span>1/2 kg de arrachera</span><b>$195</b></li>
-                    <li><span>1 kg de costilla BBQ</span><b>$250</b></li>
-                    <li><span>1/2 kg de costilla BBQ</span><b>$130</b></li>
-                    <li><span>Orden individual de carne</span><b>$120</b></li>
-                    <li><span>1 pollo</span><b>$160</b></li>
-                    <li><span>1/2 pollo</span><b>$85</b></li>
-                    <li><span>Pollo y medio</span><b>$240</b></li>
-                    <li><span>1 kg de pechuga</span><b>$245</b></li>
-                    <li><span>1/2 kg de pechuga</span><b>$130</b></li>
-                    <li><span>Papa con carne</span><b>$160</b></li>
+                    <li><span>1 kg de carne asada</span><b>$320</b><button class="plist__add" type="button" data-add aria-label="Agregar 1 kg de carne asada al pedido"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></li>
+                    <li><span>1/2 kg de carne asada</span><b>$170</b><button class="plist__add" type="button" data-add aria-label="Agregar 1/2 kg de carne asada al pedido"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></li>
+                    <li><span>1 kg de adobada</span><b>$220</b><button class="plist__add" type="button" data-add aria-label="Agregar 1 kg de adobada al pedido"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></li>
+                    <li><span>1/2 kg de adobada</span><b>$115</b><button class="plist__add" type="button" data-add aria-label="Agregar 1/2 kg de adobada al pedido"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></li>
+                    <li><span>1 kg de arrachera</span><b>$380</b><button class="plist__add" type="button" data-add aria-label="Agregar 1 kg de arrachera al pedido"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></li>
+                    <li><span>1/2 kg de arrachera</span><b>$195</b><button class="plist__add" type="button" data-add aria-label="Agregar 1/2 kg de arrachera al pedido"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></li>
+                    <li><span>1 kg de costilla BBQ</span><b>$250</b><button class="plist__add" type="button" data-add aria-label="Agregar 1 kg de costilla BBQ al pedido"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></li>
+                    <li><span>1/2 kg de costilla BBQ</span><b>$130</b><button class="plist__add" type="button" data-add aria-label="Agregar 1/2 kg de costilla BBQ al pedido"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></li>
+                    <li><span>Orden individual de carne</span><b>$120</b><button class="plist__add" type="button" data-add aria-label="Agregar Orden individual de carne al pedido"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></li>
+                    <li><span>1 pollo</span><b>$160</b><button class="plist__add" type="button" data-add aria-label="Agregar 1 pollo al pedido"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></li>
+                    <li><span>1/2 pollo</span><b>$85</b><button class="plist__add" type="button" data-add aria-label="Agregar 1/2 pollo al pedido"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></li>
+                    <li><span>Pollo y medio</span><b>$240</b><button class="plist__add" type="button" data-add aria-label="Agregar Pollo y medio al pedido"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></li>
+                    <li><span>1 kg de pechuga</span><b>$245</b><button class="plist__add" type="button" data-add aria-label="Agregar 1 kg de pechuga al pedido"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></li>
+                    <li><span>1/2 kg de pechuga</span><b>$130</b><button class="plist__add" type="button" data-add aria-label="Agregar 1/2 kg de pechuga al pedido"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></li>
+                    <li><span>Papa con carne</span><b>$160</b><button class="plist__add" type="button" data-add aria-label="Agregar Papa con carne al pedido"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></li>
                 </ul>
             </section>
 
             <section class="plist" data-reveal aria-labelledby="complementos-title">
                 <h3 id="complementos-title">Complementos</h3>
                 <ul role="list">
-                    <li><span>Sopa verde y fría</span><b>$45</b></li>
-                    <li><span>Frijoles puercos</span><b>$45</b></li>
-                    <li><span>Arroz</span><b>$35</b></li>
-                    <li><span>Espagueti</span><b>$45</b></li>
-                    <li><span>Guacamole</span><b>$20</b></li>
-                    <li><span>Guacamole a la mexicana</span><b>$40</b></li>
-                    <li><span>Salsa extra</span><b>$15</b></li>
-                    <li><span>Tortillas, por kg</span><b>$30</b></li>
-                    <li><span>Cebolla asada</span><b>$20</b></li>
-                    <li><span>Agua fresca, 1 litro</span><b>$25</b></li>
+                    <li><span>Sopa verde y fría</span><b>$45</b><button class="plist__add" type="button" data-add aria-label="Agregar Sopa verde y fría al pedido"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></li>
+                    <li><span>Frijoles puercos</span><b>$45</b><button class="plist__add" type="button" data-add aria-label="Agregar Frijoles puercos al pedido"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></li>
+                    <li><span>Arroz</span><b>$35</b><button class="plist__add" type="button" data-add aria-label="Agregar Arroz al pedido"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></li>
+                    <li><span>Espagueti</span><b>$45</b><button class="plist__add" type="button" data-add aria-label="Agregar Espagueti al pedido"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></li>
+                    <li><span>Guacamole</span><b>$20</b><button class="plist__add" type="button" data-add aria-label="Agregar Guacamole al pedido"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></li>
+                    <li><span>Guacamole a la mexicana</span><b>$40</b><button class="plist__add" type="button" data-add aria-label="Agregar Guacamole a la mexicana al pedido"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></li>
+                    <li><span>Salsa extra</span><b>$15</b><button class="plist__add" type="button" data-add aria-label="Agregar Salsa extra al pedido"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></li>
+                    <li><span>Tortillas, por kg</span><b>$30</b><button class="plist__add" type="button" data-add aria-label="Agregar Tortillas, por kg al pedido"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></li>
+                    <li><span>Cebolla asada</span><b>$20</b><button class="plist__add" type="button" data-add aria-label="Agregar Cebolla asada al pedido"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></li>
+                    <li><span>Agua fresca, 1 litro</span><b>$25</b><button class="plist__add" type="button" data-add aria-label="Agregar Agua fresca, 1 litro al pedido"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button></li>
                 </ul>
             </section>
 
@@ -849,6 +852,11 @@
                 <textarea id="f-notas" name="notas" rows="3" placeholder="Ej. Sin picante, con tortillas extra"></textarea>
             </div>
 
+            <p class="form__cart" data-cart-note hidden>
+                <span data-cart-note-text></span>
+                <button type="button" data-cart-open>Ver mi pedido</button>
+            </p>
+
             <button class="btn btn--flame btn--lg btn--block" type="submit" id="form-submit">
                 <svg class="ic" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>
                 <span>Mandar mi pedido por WhatsApp</span>
@@ -898,6 +906,12 @@
     </span>
 </a>
 
+<!-- Carrito: botón flotante (solo aparece cuando hay productos) -->
+<button class="cart-fab" id="cart-fab" type="button" data-cart-open aria-label="Ver mi pedido" hidden>
+    <svg class="ic" aria-hidden="true"><use href="#i-bag"/></svg>
+    <span class="cart-fab__count" id="cart-count" aria-hidden="true">0</span>
+</button>
+
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <!-- Selector de sucursal: se abre desde cualquier botón de WhatsApp cuando hay más de una sucursal configurada -->
@@ -913,6 +927,31 @@
         <h2 id="picker-title">¿A qué sucursal le escribes?</h2>
         <p class="picker__lead">Elige una y se abrirá WhatsApp con tu mensaje listo.</p>
         <ul class="picker__list" role="list" id="picker-list"></ul>
+    </div>
+</dialog>
+
+<!-- Pedido (carrito): los productos se agregan con los botones "Lo quiero" y "+" y se mandan juntos por WhatsApp -->
+<dialog class="picker cart" id="cart" aria-labelledby="cart-title" data-lenis-prevent>
+    <div class="picker__card cart__card">
+        <button class="picker__close" type="button" aria-label="Cerrar" data-cart-close>
+            <svg class="ic" aria-hidden="true"><use href="#i-x"/></svg>
+        </button>
+        <p class="eyebrow">
+            <svg class="ic" aria-hidden="true"><use href="#i-bag"/></svg>
+            Tu pedido
+        </p>
+        <h2 id="cart-title">Esto llevas.</h2>
+        <ul class="cart__list" role="list" id="cart-list"></ul>
+        <p class="cart__empty" id="cart-empty" hidden>Todavía no agregas nada. Elige algo del menú y aparecerá aquí.</p>
+        <div class="cart__foot" id="cart-foot">
+            <p class="cart__total"><span>Total</span><b id="cart-total">$0</b></p>
+            <p class="cart__note" id="cart-note" hidden>El total no cuenta los productos sin precio; te los confirmamos por WhatsApp.</p>
+            <button class="btn btn--flame btn--lg btn--block" type="button" id="cart-send">
+                <svg class="ic" aria-hidden="true"><use href="#i-whatsapp-logo-fill"/></svg>
+                <span>Enviar mi pedido por WhatsApp</span>
+            </button>
+            <button class="cart__clear" type="button" id="cart-clear">Vaciar pedido</button>
+        </div>
     </div>
 </dialog>
 

@@ -56,6 +56,7 @@ const CONFIG = {
     const state = { velocity: 0 };
     let lenis = null;
     let openPicker = null; // abre el selector de sucursal con un mensaje; solo existe si hay 2+ sucursales
+    let cart = null;       // pedido (carrito): { count, summary, open }; lo crea initCart
 
     /* ----------------------------------------------------------------------
        Utilidades
@@ -268,11 +269,13 @@ const CONFIG = {
             if (e.target.closest('a.branch')) {
                 toast('Abriendo WhatsApp con tu pedido.');
                 dlg.close();
+                const cartDlg = $('#cart'); // si venía del pedido, esa ventana también se cierra
+                if (cartDlg && cartDlg.open) cartDlg.close();
             }
         });
         dlg.addEventListener('close', () => {
             const drawer = $('#drawer');
-            if (lenis && !(drawer && drawer.classList.contains('is-open'))) lenis.start();
+            if (lenis && !(drawer && drawer.classList.contains('is-open')) && !$('dialog[open]')) lenis.start();
         });
 
         doc.addEventListener('click', e => {
@@ -281,6 +284,246 @@ const CONFIG = {
             e.preventDefault();
             openPicker(a.dataset.wa);
         });
+    }
+
+    /* ----------------------------------------------------------------------
+       Pedido (carrito): se arma con los botones "Lo quiero" y "+" (todo lo que tenga data-add)
+       y se manda completo, con todos los productos, por WhatsApp.
+       El nombre y el precio salen de lo que ya está escrito en la página: si cambia un precio en el HTML, el pedido lo sigue.
+       ---------------------------------------------------------------------- */
+    function initCart() {
+        const dlg = $('#cart');
+        const list = $('#cart-list');
+        if (!dlg || !list) return;
+
+        const KEY = 'orrante-pedido';
+        const MAX_QTY = 99;
+        const fab = $('#cart-fab');
+        const countEl = $('#cart-count');
+        const emptyEl = $('#cart-empty');
+        const foot = $('#cart-foot');
+        const totalEl = $('#cart-total');
+        const noteEl = $('#cart-note');
+        const clearBtn = $('#cart-clear');
+        const formNote = $('[data-cart-note]');
+        const canModal = typeof dlg.showModal === 'function';
+
+        const money = n => `$${n.toLocaleString('es-MX')}`;
+        const plural = n => `${n} ${n === 1 ? 'producto' : 'productos'}`;
+        const text = el => (el ? el.textContent.replace(/\s+/g, ' ').trim() : '');
+        const priceOf = el => { const m = /\$\s*([\d.,]+)/.exec(text(el)); return m ? Number(m[1].replace(/,/g, '')) : null; };
+
+        // Producto de un botón. data-add puede traer el nombre; si va vacío se toma del propio lugar donde está el botón.
+        function productOf(btn) {
+            const row = btn.closest('.plist li');
+            const pkg = btn.closest('.pkg');
+            const card = btn.closest('.pcard');
+            let name = btn.dataset.add;
+            let price = null;
+            if (row) { name = name || text($('span', row)); price = priceOf($('b', row)); }
+            else if (pkg) { name = name || text($('.pkg__name, .pkg__hot-title', pkg)); price = priceOf($('.pkg__price', pkg)); }
+            else if (card) { name = name || text($('h3', card)); }
+            return name ? { name, price } : null;
+        }
+
+        // Catálogo: nombre -> { name, price }. Si un mismo producto aparece en dos lugares, se queda el dato que trae precio.
+        const catalog = new Map();
+        $$('[data-add]').forEach(btn => {
+            const p = productOf(btn);
+            if (!p) return;
+            const known = catalog.get(p.name);
+            if (!known) catalog.set(p.name, p);
+            else if (known.price == null && p.price != null) known.price = p.price;
+        });
+
+        // Pedido: nombre -> cantidad. Se conserva mientras la pestaña siga abierta (también si se recarga).
+        const items = new Map();
+        try {
+            const saved = JSON.parse(sessionStorage.getItem(KEY) || '[]');
+            if (Array.isArray(saved)) {
+                saved.forEach(entry => {
+                    const [name, qty] = Array.isArray(entry) ? entry : [];
+                    const n = Math.min(MAX_QTY, Number(qty) | 0);
+                    if (catalog.has(name) && n > 0) items.set(name, n);
+                });
+            }
+        } catch (err) { /* sin almacenamiento: el pedido funciona igual, solo no se conserva al recargar */ }
+        const save = () => { try { sessionStorage.setItem(KEY, JSON.stringify([...items])); } catch (err) { /* idem */ } };
+
+        const lines = () => [...items].map(([name, qty]) => {
+            const { price } = catalog.get(name);
+            return { name, qty, price, sub: price == null ? null : price * qty };
+        });
+        const totals = () => {
+            const ls = lines();
+            return {
+                count: ls.reduce((n, l) => n + l.qty, 0),
+                total: ls.reduce((t, l) => t + (l.sub || 0), 0),
+                partial: ls.some(l => l.price == null)
+            };
+        };
+
+        // Renglones del pedido para el mensaje de WhatsApp (los usa también el formulario)
+        function summary() {
+            const { total, partial } = totals();
+            const out = lines().map(l => `• ${l.qty} x ${l.name}${l.sub == null ? '' : ` — ${money(l.sub)}`}`);
+            if (total > 0) {
+                out.push('', `*Total: ${money(total)}*`);
+                if (partial) out.push('(sin contar los productos sin precio)');
+            }
+            return out;
+        }
+        const message = () => ['Hola, quiero hacer este pedido en Asadero Orrante:', '', ...summary(), '', '¡Gracias!'].join('\n');
+
+        function stepButton(name, step) {
+            const b = doc.createElement('button');
+            b.type = 'button';
+            b.dataset.name = name;
+            b.dataset.step = String(step);
+            b.setAttribute('aria-label', `${step > 0 ? 'Agregar uno más de' : 'Quitar uno de'} ${name}`);
+            b.appendChild(icon(step > 0 ? 'i-plus' : 'i-minus'));
+            return b;
+        }
+
+        function render() {
+            const ls = lines();
+            const { count, total, partial } = totals();
+
+            list.replaceChildren(...ls.map(l => {
+                const li = doc.createElement('li');
+                li.className = 'cart__item';
+                const name = doc.createElement('strong');
+                name.textContent = l.name;
+                const line = doc.createElement('b');
+                line.className = 'cart__line';
+                line.textContent = l.sub == null ? '' : money(l.sub);
+                const unit = doc.createElement('span');
+                unit.className = 'cart__unit';
+                unit.textContent = l.price == null ? 'Precio por confirmar' : `${money(l.price)} c/u`;
+                const qty = doc.createElement('div');
+                qty.className = 'cart__qty';
+                const num = doc.createElement('span');
+                num.textContent = String(l.qty);
+                qty.append(stepButton(l.name, -1), num, stepButton(l.name, 1));
+                li.append(name, line, unit, qty);
+                return li;
+            }));
+            list.hidden = !ls.length;
+            emptyEl.hidden = ls.length > 0;
+            foot.hidden = !ls.length;
+            totalEl.textContent = money(total);
+            totalEl.parentElement.hidden = total === 0;
+            noteEl.hidden = !(partial && total > 0);
+
+            if (fab) {
+                fab.hidden = count === 0;
+                countEl.textContent = String(count);
+                fab.setAttribute('aria-label', `Ver mi pedido, ${plural(count)}`);
+            }
+            if (formNote) {
+                formNote.hidden = count === 0;
+                $('[data-cart-note-text]', formNote).textContent =
+                    `Tu pedido (${plural(count)}${total > 0 ? `, ${money(total)}` : ''}) se manda junto con estos datos.`;
+            }
+        }
+
+        function open() {
+            if (!items.size || !canModal) return;
+            clearTimer();
+            render();
+            dlg.showModal();
+            if (lenis) lenis.stop();
+        }
+
+        function add(name) {
+            const next = (items.get(name) || 0) + 1;
+            if (next > MAX_QTY) { toast('Ya llevas el máximo de ese producto.'); return; }
+            items.set(name, next);
+            save();
+            render();
+            toast(`Agregado: ${name}${next > 1 ? ` (llevas ${next})` : ''}`);
+            if (fab) {
+                fab.classList.remove('is-bump');
+                void fab.offsetWidth; // reinicia la animación si se toca varias veces seguidas
+                fab.classList.add('is-bump');
+            }
+        }
+
+        function step(name, delta) {
+            const next = (items.get(name) || 0) + delta;
+            if (next > MAX_QTY) return;
+            if (next <= 0) items.delete(name); else items.set(name, next);
+            save();
+            render();
+        }
+
+        // Vaciar pide confirmar con un segundo toque
+        let clearTimerId = 0;
+        const clearTimer = () => { clearTimeout(clearTimerId); clearBtn.textContent = 'Vaciar pedido'; clearBtn.dataset.sure = ''; };
+
+        function send() {
+            if (!items.size) return;
+            const msg = message();
+            if (openPicker) { openPicker(msg); return; } // varias sucursales: primero se elige a cuál mandarlo
+            window.open(waLink(msg), '_blank', 'noopener');
+            toast('Abriendo WhatsApp con tu pedido.');
+            if (dlg.open) dlg.close();
+        }
+
+        // Botones "Lo quiero" y "+"
+        doc.addEventListener('click', e => {
+            const btn = e.target.closest && e.target.closest('[data-add]');
+            if (!btn) return;
+            const p = productOf(btn);
+            if (!p) return;
+            if (!canModal) { window.open(waLink(`Hola, quiero pedir ${p.name}.`), '_blank', 'noopener'); return; } // navegador sin <dialog>: pedido directo
+            add(p.name);
+        });
+        // Ver el pedido (botón flotante y aviso del formulario)
+        doc.addEventListener('click', e => {
+            if (e.target.closest && e.target.closest('[data-cart-open]')) open();
+        });
+        // Con productos en el pedido, los botones generales de WhatsApp abren el pedido en vez de mandar un saludo vacío.
+        // Se registra antes que el selector de sucursal: aquel respeta los clics que ya se atendieron (defaultPrevented).
+        doc.addEventListener('click', e => {
+            const a = e.target.closest && e.target.closest('[data-wa]');
+            if (!a || !items.size || !canModal || e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey) return;
+            e.preventDefault();
+            open();
+        });
+
+        dlg.addEventListener('click', e => {
+            if (e.target === dlg || e.target.closest('[data-cart-close]')) { dlg.close(); return; }
+            const b = e.target.closest('[data-step]');
+            if (!b) return;
+            const { name, step: s } = b.dataset;
+            step(name, Number(s));
+            // el renglón se vuelve a dibujar: el foco regresa al mismo botón (o al primero que quede)
+            const again = $$('[data-step]', list).find(x => x.dataset.name === name && x.dataset.step === s) || $('[data-step]', list);
+            (again || $('[data-cart-close]', dlg)).focus();
+        });
+        $('#cart-send').addEventListener('click', send);
+        clearBtn.addEventListener('click', () => {
+            if (clearBtn.dataset.sure) {
+                clearTimer();
+                items.clear();
+                save();
+                render();
+                $('[data-cart-close]', dlg).focus();
+                return;
+            }
+            clearBtn.dataset.sure = '1';
+            clearBtn.textContent = '¿Seguro? Toca otra vez';
+            clearTimerId = setTimeout(clearTimer, 3500);
+        });
+        dlg.addEventListener('close', () => {
+            clearTimer();
+            const drawer = $('#drawer');
+            if (lenis && !(drawer && drawer.classList.contains('is-open')) && !$('dialog[open]')) lenis.start();
+        });
+
+        render();
+        cart = { count: () => totals().count, summary, open };
     }
 
     /* ----------------------------------------------------------------------
@@ -813,7 +1056,7 @@ const CONFIG = {
         const drawer = $('#drawer');
         const nav = $('#nav');
         if (!burger || !drawer) return () => {};
-        const inertTargets = ['#contenido', '.footer', '.wa-float'].map(s => $(s)).filter(Boolean);
+        const inertTargets = ['#contenido', '.footer', '.wa-float', '.cart-fab'].map(s => $(s)).filter(Boolean);
         let open = false;
 
         const center = () => {
@@ -954,8 +1197,9 @@ const CONFIG = {
             const notas = $('#f-notas').value.trim();
 
             setError(nameField, nameErr, nombre.length < 2 ? 'Dinos tu nombre para saber quién pide.' : '');
-            setError(chipField, chipErr, antojos.length ? '' : 'Elige al menos una opción del menú.');
-            if (nombre.length < 2 || !antojos.length) {
+            const hasCart = Boolean(cart && cart.count() > 0); // con productos en el pedido ya no hace falta marcar un antojo
+            setError(chipField, chipErr, antojos.length || hasCart ? '' : 'Elige al menos una opción del menú.');
+            if (nombre.length < 2 || (!antojos.length && !hasCart)) {
                 (nombre.length < 2 ? nameInput : $('input[name="antojo"]', form)).focus();
                 toast('Revisa los campos marcados.');
                 return;
@@ -965,7 +1209,8 @@ const CONFIG = {
                 'Hola, quiero hacer un pedido en Asadero Orrante.',
                 '',
                 `*Nombre:* ${nombre}`,
-                `*Se me antoja:* ${antojos.join(', ')}`,
+                ...(hasCart ? ['*Pedido:*', ...cart.summary(), ''] : []),
+                ...(antojos.length ? [`*Se me antoja:* ${antojos.join(', ')}`] : []),
                 `*Somos:* ${personas}`,
                 `*Comentarios:* ${notas || 'Ninguno'}`,
                 '',
@@ -989,6 +1234,7 @@ const CONFIG = {
        ---------------------------------------------------------------------- */
     function boot() {
         bindBusinessData();
+        initCart(); // antes que el selector: sus clics en botones de WhatsApp tienen prioridad cuando hay pedido
         initPicker();
         initForm();
         initNavStuck();
