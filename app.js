@@ -16,17 +16,17 @@
    ========================================================================== */
 const CONFIG = {
     // Sucursales. Cada una recibe los pedidos en su propio WhatsApp.
-    //   phone:   formato internacional sin "+", espacios ni guiones. México: 52 + 10 dígitos. Ejemplo: '526141234567'
-    //   wa:      opcional. Enlace de WhatsApp de la sucursal (https://wa.me/message/...). Se usa cuando no hay "phone".
+    //   phone:   formato internacional sin "+", espacios ni guiones. México: 52 + 10 dígitos (o 521 + 10 dígitos, como lo registra WhatsApp). Ejemplo: '526141234567'
+    //   wa:      opcional. Enlace de WhatsApp de la sucursal (https://wa.me/message/...). Solo se usa si no hay "phone".
     //            Ese tipo de enlace no lleva el texto del pedido escrito; con "phone" sí.
     //   address: opcional. Ejemplo: 'Av. Principal 123, Col. Centro, Ciudad'
     //   maps:    opcional. Enlace de Google Maps de la sucursal.
     // Sin teléfono ni enlace "wa" la sucursal no recibe pedidos por WhatsApp, pero si tiene "maps" aparece en Contacto con su ubicación.
     // Con una sola sucursal de WhatsApp, los botones abren su WhatsApp directo; con dos o más, abren un selector de sucursal.
     branches: [
-        { name: 'Santa Teresa',   phone: '', wa: 'https://wa.me/message/AT37LAXE42GYG1', address: 'Av. Munich 20526, Santa Teresa, 82090 Mazatlán, Sin.',               maps: 'https://maps.app.goo.gl/6mhzQsrkeW78oBV77' },
-        { name: 'Santa Rosa',     phone: '', wa: 'https://wa.me/message/YLUORHJ27VBAA1', address: 'Av. Sta. Rosa 203, Burócratas, 82163 Mazatlán, Sin.',                 maps: 'https://maps.app.goo.gl/tvmYGEYAYsNUfpXv9' },
-        { name: 'Real del Valle', phone: '', wa: 'https://wa.me/message/RHOAPYBT4UK7O1', address: 'Av. Paseo del Atlántico 4113, Real del Valle, 82124 Mazatlán, Sin.', maps: 'https://maps.app.goo.gl/miVXDajTn7BUJZbM6' }
+        { name: 'Santa Teresa',   phone: '5216694416351', wa: 'https://wa.me/message/AT37LAXE42GYG1', address: 'Av. Munich 20526, Santa Teresa, 82090 Mazatlán, Sin.',               maps: 'https://maps.app.goo.gl/6mhzQsrkeW78oBV77' },
+        { name: 'Santa Rosa',     phone: '5216692722665', wa: 'https://wa.me/message/YLUORHJ27VBAA1', address: 'Av. Sta. Rosa 203, Burócratas, 82163 Mazatlán, Sin.',                 maps: 'https://maps.app.goo.gl/tvmYGEYAYsNUfpXv9' },
+        { name: 'Real del Valle', phone: '5216692231155', wa: 'https://wa.me/message/RHOAPYBT4UK7O1', address: 'Av. Paseo del Atlántico 4113, Real del Valle, 82124 Mazatlán, Sin.', maps: 'https://maps.app.goo.gl/miVXDajTn7BUJZbM6' }
     ],
 
     // Horario. Ejemplo: 'Lunes a domingo de 9:00 a 20:00'
@@ -79,7 +79,8 @@ const CONFIG = {
     const named = CONFIG.branches.map((b, i) => ({ ...b, name: b.name || `Sucursal ${i + 1}` }));
     const branches = named.filter(hasWa);                              // reciben pedidos por WhatsApp
     const places = named.filter(b => b.maps || hasWa(b));              // se muestran en Contacto y footer
-    const showPhone = p => (/^52\d{10}$/.test(p) ? `+52 ${p.slice(2, 5)} ${p.slice(5, 8)} ${p.slice(8)}` : `+${p}`);
+    // Se muestra como +52 669 441 6351 (el "1" de 521 es del registro de WhatsApp, no se marca)
+    const showPhone = p => (/^521?\d{10}$/.test(p) ? `+52 ${p.slice(-10, -7)} ${p.slice(-7, -4)} ${p.slice(-4)}` : `+${p}`);
     // Sin sucursal explícita usa la primera (los botones generales abren el selector si hay varias).
     // Con teléfono lleva el mensaje escrito; sin teléfono usa el enlace "wa" de la sucursal tal cual.
     const waLink = (msg, b = branches[0]) => {
